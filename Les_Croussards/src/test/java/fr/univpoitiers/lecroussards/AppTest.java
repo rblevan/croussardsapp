@@ -1,4 +1,4 @@
-package org.example;
+package fr.univpoitiers.lecroussards;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

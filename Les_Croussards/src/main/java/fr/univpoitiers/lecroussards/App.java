@@ -1,4 +1,4 @@
-package org.example;
+package fr.univpoitiers.lecroussards;
 
 /**
  * Hello world!
