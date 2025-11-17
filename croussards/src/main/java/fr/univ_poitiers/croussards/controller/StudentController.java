@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 @RestController
 @RequestMapping("students")
 @RequiredArgsConstructor
-public class UserController {
+public class StudentController {
     private StudentRepository studentRepository;
 
     @GetMapping("/{id}")

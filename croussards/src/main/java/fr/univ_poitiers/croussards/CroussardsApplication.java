@@ -1,9 +1,9 @@
 package fr.univ_poitiers.croussards;
 
 import fr.univ_poitiers.croussards.model.Review;
-import fr.univ_poitiers.croussards.model.User;
+import fr.univ_poitiers.croussards.model.Student;
 import fr.univ_poitiers.croussards.repository.ReviewRepository;
-import fr.univ_poitiers.croussards.repository.UserRepository;
+import fr.univ_poitiers.croussards.repository.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,20 +20,20 @@ public class CroussardsApplication {
     }
 
     @Bean
-    CommandLineRunner runner(UserRepository userRepository, ReviewRepository reviewRepository) {
+    CommandLineRunner runner(StudentRepository studentRepository, ReviewRepository reviewRepository) {
         return args -> {
 
-            User user1 = new User("stephane@email.com", "toto1234");
+            Student user1 = new Student(33, "stephane@email.com", "toto1234");
             Review review = new Review(user1, "J'adore cette personne", 4.5f);
             user1.getReviews().add(review);
 
-            userRepository.save(user1);
+            studentRepository.save(user1);
             reviewRepository.save(review);
 
-            User user2 = new User("evan@email.com", "fhueij18560");
-            userRepository.save(user2);
+            Student user2 = new Student(22, "evan@email.com", "fhueij18560");
+            studentRepository.save(user2);
 
-            User saved = userRepository.findById(user1.getId()).orElseThrow(NoSuchElementException::new);
+            Student saved = studentRepository.findById(user1.getIdEtu()).orElseThrow(NoSuchElementException::new);
         };
     }
 

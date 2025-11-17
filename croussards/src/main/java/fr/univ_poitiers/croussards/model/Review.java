@@ -17,12 +17,12 @@ public class Review {
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
-    private User user;
+    private Student student;
     private float ranking;
     private String comment;
 
-    public Review(User user, String comment, float ranking) {
-        this.user = user;
+    public Review(Student student, String comment, float ranking) {
+        this.student = student;
         this.ranking = ranking;
         this.comment = comment;
     }
