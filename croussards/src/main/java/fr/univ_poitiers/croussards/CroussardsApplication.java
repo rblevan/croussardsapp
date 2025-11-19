@@ -24,11 +24,11 @@ public class CroussardsApplication {
         return args -> {
 
             Student user1 = new Student(33, "stephane@email.com", "toto1234");
-            Review review = new Review(user1, "J'adore cette personne", 4.5f);
-            user1.getReviews().add(review);
+            //Review review = new Review(user1, "J'adore cette personne", 4.5f);
+            //user1.getReviews().add(review);
 
             studentRepository.save(user1);
-            reviewRepository.save(review);
+            //reviewRepository.save(review);
 
             Student user2 = new Student(22, "evan@email.com", "fhueij18560");
             studentRepository.save(user2);

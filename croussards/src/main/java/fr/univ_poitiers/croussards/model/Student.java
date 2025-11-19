@@ -1,13 +1,15 @@
 package fr.univ_poitiers.croussards.model;
 
 import jakarta.persistence.*;
-
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
 // Supposant que la classe Review existe aussi dans ce package ou est importée
 // import fr.univ_poitiers.croussards.model.Review;
 
+@Data
 @Entity // Ajoutée pour en faire une entité JPA
 @Table(name = "Students") // Déclare le nom de la table (similaire au @Table de User)
 public class Student {
