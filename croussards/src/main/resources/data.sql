@@ -1,0 +1,1 @@
+INSERT INTO 'Restaurants' (idResto,name,adress,typeResto)
