@@ -13,7 +13,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Reviews")
 public class Review {
 
     @Id
@@ -28,7 +27,7 @@ public class Review {
 
     // Relation ManyToOne vers Restaurant
     @ManyToOne
-    @JoinColumn(name = "resto")
+    @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
 
     @Column(name = "nb_stars")

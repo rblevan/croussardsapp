@@ -10,20 +10,19 @@ import java.util.List;
 // import fr.univ_poitiers.croussards.model.Review;
 
 @Entity
-@Table(name = "Students")
 public class Student {
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "student")
     private List<Review> reviews = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "num_etu")
-    private Long numEtu;
+    @Column(name = "num_students")
+    private Long numStudents;
 
     private String name;
 
     @Column(name = "first_name")
-    private String firstname;
+    private String firstName;
 
     private String mail;
 
