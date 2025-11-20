@@ -1,0 +1,131 @@
+/* VARIABLES GLOBALES (Pour une gestion facile des couleurs) */
+:root {
+    --couleur-primaire: #C0392B; /* Rouge bordeaux/brique (Rouge dominant) */
+    --couleur-secondaire: #E74C3C; /* Rouge plus vif pour les accents */
+    --couleur-fond: #F4F6F6;     /* Gris très clair pour le fond */
+    --couleur-texte: #333333;    /* Gris foncé pour le texte lisible */
+    --couleur-blanc: #ffffff;
+}
+
+/* 1. RESET ET BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%; /* Le HTML doit prendre toute la hauteur */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family :'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--couleur-fond);
+    color: var(--couleur-texte);
+    line-height: 1.6;
+}
+
+/* 2. MISE EN PAGE GLOBALE */
+.container {
+    width: 90%;
+    max-width: 1200px; /* Limite la largeur sur grand écran */
+    margin: 20px auto; /* Centre le contenu horizontalement */
+    padding: 0 20px;
+}
+
+header {
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-blanc);
+    /* Augmentez le padding vertical si nécessaire pour donner plus de hauteur à la barre rouge */
+    padding: 20px ; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav-logo {
+    width: 80px;        /* Réduit la taille du logo */
+    height: 80px;       /* Ajout d'une hauteur fixe pour s'assurer qu'il est carré */
+    border-radius: 50%; 
+    margin-left: 100px; /* Espace entre le logo et le titre */
+}
+.brand-container img {
+    width: 150px;      /* Cible la deuxième image et la réduit à 40 pixels de large */
+    height: auto;     /* Maintient les proportions */
+    margin-left: 15px;
+    background-color: white; /* Ajoute de l'espace entre les liens de nav et cette image */
+}
+
+/* Assurez-vous que les éléments de l'en-tête sont bien centrés */
+.header-left {
+    display:flex;
+    align-items: center; /* Important pour aligner verticalement l'image et le h1 */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Augmentez le padding pour éloigner le contenu des bords */
+    padding: 0 20px; 
+}
+
+nav h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 25px;
+}
+
+nav ul li a {
+    color: var(--couleur-blanc);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--couleur-secondaire); /* Rouge vif au survol */
+}
+
+/* 4. TYPOGRAPHIE ET TITRES */
+h2 {
+    color: var(--couleur-primaire); /* Titre principal en rouge */
+    font-size: 2em;
+}
+
+/* 6. PIED DE PAGE (FOOTER) - Reste inchangé */
+footer {
+    background-color: var(--couleur-texte);
+    color: var(--couleur-fond);
+    text-align: center;
+    padding: 15px 0;
+    /* La marge supérieure n'est plus critique, mais peut rester pour l'espacement si le contenu est long */
+    margin-top: auto; /* Optionnel, mais assure un espacement si flex-grow n'était pas suffisant sur main */
+}
+
+.logo-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.logo-container img {
+    width: 80px;        /* taille */
+    height: auto;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-right: 50px;
+}
