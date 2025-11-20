@@ -9,16 +9,14 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idResto")
+    @Column(name = "id_resto")
     private Long idResto;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "adress")
     private String adress;
 
-    @Column(name = "typeResto")
+    @Column(name = "type_resto")
     private String typeResto;
 
     @OneToMany(mappedBy = "restaurant")

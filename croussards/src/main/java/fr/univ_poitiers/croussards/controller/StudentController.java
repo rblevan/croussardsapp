@@ -14,12 +14,12 @@ import java.util.NoSuchElementException;
 @RequestMapping("students")
 @RequiredArgsConstructor
 public class StudentController {
-    private StudentRepository studentRepository;
+   /* private StudentRepository studentRepository;
 
     @GetMapping("/{id}")
 
     public Student getUser(@PathVariable Integer id) {
         Student student = studentRepository.findById(id).orElseThrow(NoSuchElementException::new);
         return student;
-    }
+    } */
 }
