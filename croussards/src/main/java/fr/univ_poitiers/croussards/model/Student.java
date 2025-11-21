@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// Supposant que la classe Review existe aussi dans ce package ou est importée
-// import fr.univ_poitiers.croussards.model.Review;
 
-@Entity // Ajoutée pour en faire une entité JPA
-@Table(name = "Students") // Déclare le nom de la table (similaire au @Table de User)
+import fr.univ_poitiers.croussards.model.Review;
+
+@Entity
+@Table(name = "Students")
 public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
