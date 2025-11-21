@@ -4,10 +4,12 @@ import fr.univ_poitiers.croussards.model.Review;
 import fr.univ_poitiers.croussards.repository.ReviewRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Data
@@ -15,16 +17,44 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public Optional<Review> getReview(Long id) {
-        return reviewRepository.findById(id);
+    public Review getReview(Long id) {
+        return reviewRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Review not found"));
     }
 
     public List<Review> getReviews() {
         return reviewRepository.findAll();
     }
 
-    public Review saveStudent(Review review) {
+    public Review saveReview(Review review) {
         return reviewRepository.save(review);
     }
 
+    public void deleteReview(Long id){
+        reviewRepository.deleteById(id);
+    }
+
+    public void updateReview (Review review, Review updateReview){
+        review.setId_review(updateReview.getId_review());
+        review.setComments(updateReview.getComments());
+        review.setStudent(updateReview.getStudent());
+        review.setRestaurant(updateReview.getRestaurant());
+        review.setNb_stars(updateReview.getNb_stars());
+        review.setDate_publi(updateReview.getDate_publi());
+    }
+
+
+    public ResponseEntity<Review> responseReview(Review review){
+        if (review == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(review);
+    }
+
+    public ResponseEntity<List<Review>> responseReviews(List<Review> reviews){
+        if (reviews == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(reviews);
+    }
 }
