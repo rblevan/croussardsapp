@@ -16,37 +16,16 @@ import java.util.Optional;
 @Service
 public class StudentService {
     @Autowired
-    private StudentRepository studentRepository;
+    private static StudentRepository studentRepository;
 
-    @Autowired
-    private ReviewRepository reviewRepository;
 
-    @Autowired
-    private RestaurantRepository restaurantRepository;
-
-    public Optional<Student> getStudent(final Long id) {
+    public static Optional<Student> getStudent(final Long id) {
         return studentRepository.findById(id);
     }
 
-    public Optional<Review> getReview(final Long id) {
-        return reviewRepository.findById(id);
-    }
-
-    public Optional<Restaurant> getRestaurant(final Long id) {
-        return restaurantRepository.findById(id);
-    }
 
     public Iterable<Student> getStudents() {
         return studentRepository.findAll();
     }
-
-    public Iterable<Review> getReviews() {
-        return reviewRepository.findAll();
-    }
-
-    public Iterable<Restaurant> getRestaurants() {
-        return restaurantRepository.findAll();
-    }
-
 
 }
