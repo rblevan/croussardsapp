@@ -1,43 +1,41 @@
 package fr.univ_poitiers.croussards.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
 
-@Data
+import java.util.Date;
+
+@AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity
-@Table(name = "Reviews")
 public class Review {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_reviews")
+    private Long idReviews;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "student_id", nullable = false)
-    @JsonIgnore
+    // Relation ManyToOne vers Etudiant
+    @ManyToOne
+    @JoinColumn(name = "student")
     private Student student;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    // Relation ManyToOne vers Restaurant
+    @ManyToOne
+    @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
 
-    // Conservé de votre 2ème fichier (remplace 'int note')
-    private float ranking;
+    @Column(name = "nb_stars")
+    private int nbStars;
 
-    // Conservé de votre 2ème fichier
-    private String comment;
+    private String comments;
 
-    // Constructeur mis à jour
-    public Review(Student student, Restaurant restaurant, String comment, float ranking) {
-        this.student = student;
-        this.restaurant = restaurant;
-        this.comment = comment;
-        this.ranking = ranking;
-    }
+    @Column(name = "date_publi")
+    private Date datePubli;
+
 }
