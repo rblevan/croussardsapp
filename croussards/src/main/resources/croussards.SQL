@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Avis` (
     ON DELETE CASCADE                    
     ON UPDATE NO ACTION,
   CONSTRAINT `check_etoiles` CHECK (`NbEtoiles` BETWEEN 1 AND 5) 
+)
 ENGINE = InnoDB;
 
 
