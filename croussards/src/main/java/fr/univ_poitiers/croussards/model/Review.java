@@ -17,8 +17,8 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_reviews")
-    private Long idReviews;
+    @Column(name = "id_review")
+    private Long idReview;
 
     // Relation ManyToOne vers Etudiant
     @ManyToOne

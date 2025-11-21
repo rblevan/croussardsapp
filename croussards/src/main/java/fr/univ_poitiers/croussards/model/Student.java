@@ -2,13 +2,17 @@ package fr.univ_poitiers.croussards.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Supposant que la classe Review existe aussi dans ce package ou est importée
 // import fr.univ_poitiers.croussards.model.Review;
 
+@Data
 @Entity
 public class Student {
     @OneToMany(mappedBy = "student")
@@ -16,8 +20,8 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "num_students")
-    private Long numStudents;
+    @Column(name = "num_student")
+    private Long numStudent;
 
     private String name;
 
