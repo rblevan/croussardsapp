@@ -11,7 +11,5 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class StudentService {
-    private StudentRepository studentRepository;
 
-    // public Student registerStudent(...)
 }
