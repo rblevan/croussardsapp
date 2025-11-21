@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-    // JpaRepository fournit déjà findById(), findAll(), save(), delete(), etc.
 }
