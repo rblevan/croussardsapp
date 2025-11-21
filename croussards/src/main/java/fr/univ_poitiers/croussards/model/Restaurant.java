@@ -1,8 +1,13 @@
 package fr.univ_poitiers.croussards.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 
+@Data
+@RequiredArgsConstructor
 @Entity
 public class Restaurant {
 
