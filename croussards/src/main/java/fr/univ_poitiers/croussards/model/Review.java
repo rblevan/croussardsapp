@@ -1,37 +1,41 @@
 package fr.univ_poitiers.croussards.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
+
+import java.util.Date;
+
+@RequiredArgsConstructor
 @Data
-@NoArgsConstructor
 @Entity
-@Table(name = "Reviews")
 public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "student_id", nullable = false)
-    @JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_reviews")
+    private Long idReviews;
+
+    // Relation ManyToOne vers Etudiant
+    @ManyToOne
+    @JoinColumn(name = "student")
     private Student student;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    @JsonIgnore
+    // Relation ManyToOne vers Restaurant
+    @ManyToOne
+    @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
 
-    private float ranking;
-    @Lob
-    private String comment;
+    @Column(name = "nb_stars")
+    private int nbStars;
 
-    public Review(Student student, Restaurant restaurant, String comment, float ranking) {
-        this.student = student;
-        this.restaurant = restaurant;
-        this.ranking = ranking;
-        this.comment = comment;
-    }
+    private String comments;
+
+    @Column(name = "date_publi")
+    private Date datePubli;
+
 }

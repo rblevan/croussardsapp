@@ -19,7 +19,7 @@ public class CroussardsApplication {
         SpringApplication.run(CroussardsApplication.class, args);
     }
 
-    @Bean
+   /* @Bean
     CommandLineRunner runner(StudentRepository studentRepository, ReviewRepository reviewRepository) {
         return args -> {
 
@@ -36,5 +36,5 @@ public class CroussardsApplication {
             Student saved = studentRepository.findById(user1.getIdEtu()).orElseThrow(NoSuchElementException::new);
         };
     }
-
+*/
 }
