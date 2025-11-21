@@ -1,41 +1,33 @@
 package fr.univ_poitiers.croussards.model;
 
-
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-
 
 import java.util.Date;
 
-@RequiredArgsConstructor
-@Data
 @Entity
+@Table(name = "reviews")
+@Data
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_reviews")
-    private Long idReviews;
+    private Long id_review;
 
-    // Relation ManyToOne vers Etudiant
     @ManyToOne
-    @JoinColumn(name = "student")
+    @JoinColumn(name = "num_student")
     private Student student;
 
-    // Relation ManyToOne vers Restaurant
     @ManyToOne
-    @JoinColumn(name = "restaurant")
+    @JoinColumn(name = "id_resto")
     private Restaurant restaurant;
 
-    @Column(name = "nb_stars")
-    private int nbStars;
+    private int nb_stars;
 
     private String comments;
 
-    @Column(name = "date_publi")
-    private Date datePubli;
+    private Date date_publi;
+
+
 
 }

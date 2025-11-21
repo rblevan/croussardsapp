@@ -1,29 +1,30 @@
 package fr.univ_poitiers.croussards.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@Data
-@RequiredArgsConstructor
+
+
 @Entity
+@Table(name = "restaurants")
+@Data
 public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_resto")
-    private Long idResto;
+    private Long id_resto;
 
     private String name;
 
-    private String adress;
+    private String address;
 
-    @Column(name = "type_resto")
-    private String typeResto;
+    private String type_resto;
 
     @OneToMany(mappedBy = "restaurant")
+    @JsonIgnore
     private List<Review> reviews;
 
 }
