@@ -6,19 +6,24 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @Data
 public class RestaurantService {
     @Autowired
-    private static RestaurantRepository restaurantRepository;
+    private RestaurantRepository restaurantRepository;
 
-    public static Optional<Restaurant> getRestaurant(final Long id) {
+    public Optional<Restaurant> getRestaurant(Long id) {
         return restaurantRepository.findById(id);
     }
 
-    public Iterable<Restaurant> getRestaurants() {
+    public List<Restaurant> getRestaurants() {
         return restaurantRepository.findAll();
+    }
+
+    public Restaurant saveRestaurant(Restaurant restaurant) {
+        return restaurantRepository.save(restaurant);
     }
 }
