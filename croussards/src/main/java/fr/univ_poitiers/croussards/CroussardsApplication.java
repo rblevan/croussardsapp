@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
 
 @EnableJpaRepositories
 @SpringBootApplication
-public class CroussardsApplication extends SpringBootServletInitializer {
+public class CroussardsApplication {
     public static void main(String[] args) {
         SpringApplication.run(CroussardsApplication.class, args);
     }
