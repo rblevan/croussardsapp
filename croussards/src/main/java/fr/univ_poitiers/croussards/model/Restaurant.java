@@ -6,8 +6,6 @@ import lombok.Data;
 
 import java.util.List;
 
-
-
 @Entity
 @Table(name = "restaurants")
 @Data

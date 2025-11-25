@@ -48,7 +48,7 @@ public class StudentService {
         student.setNum_student(updateStudent.getNum_student());
         student.setName(updateStudent.getName());
         student.setFirst_name(updateStudent.getFirst_name());
-        student.setPseudo(updateStudent.getPseudo());
+        student.setUsername(updateStudent.getUsername());
         student.setPwd_hash(updateStudent.getPwd_hash());
         student.setMail(updateStudent.getMail());
         student.setDate_birth(updateStudent.getDate_birth());
@@ -74,9 +74,9 @@ public class StudentService {
     public Student register(RegisterRequest request) {
         Student newStudent = new Student();
         newStudent.setName(request.getName());
-        newStudent.setFirstName(request.getFirstName());
+        newStudent.setFirst_name(request.getFirstName());
         newStudent.setMail(request.getMail());
-        newStudent.setPwdHash(passwordEncoder.encode(request.getPassword()));
+        newStudent.setPwd_hash(passwordEncoder.encode(request.getPassword()));
 
         return studentRepository.save(newStudent);
     }

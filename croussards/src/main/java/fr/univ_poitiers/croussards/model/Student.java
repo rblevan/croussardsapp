@@ -11,11 +11,11 @@ import java.util.List;
 
 // import fr.univ_poitiers.croussards.model.Review;
 
-@Data
+
 @Entity
 @Table(name = "students")
 @Data
-public class Student {
+public class Student implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long num_student;
@@ -45,12 +45,12 @@ public class Student {
 
     @Override
     public String getPassword() {
-        return this.pwdHash;
+        return this.pwd_hash;
     }
 
     @Override
     public String getUsername() {
-        return String.valueOf(this.numStudent);
+        return String.valueOf(this.num_student);
     }
 
     @Override
