@@ -7,7 +7,7 @@ CREATE TABLE students (
     mail VARCHAR(99) NOT NULL UNIQUE,
     pwd_hash VARCHAR(45) NOT NULL,
     date_birth DATE NULL,
-    pseudo VARCHAR(45) UNIQUE
+    username VARCHAR(45) UNIQUE
 );
 
 DROP TABLE IF EXISTS restaurants;
