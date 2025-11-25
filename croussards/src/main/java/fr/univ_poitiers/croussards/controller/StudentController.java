@@ -1,41 +1,61 @@
 package fr.univ_poitiers.croussards.controller;
 
-import fr.univ_poitiers.croussards.model.Restaurant;
-import fr.univ_poitiers.croussards.model.Review;
+import fr.univ_poitiers.croussards.dto.RegisterRequest;
 import fr.univ_poitiers.croussards.model.Student;
 import fr.univ_poitiers.croussards.service.StudentService;
+import lombok.RequiredArgsConstructor;
+import fr.univ_poitiers.croussards.service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class StudentController {
 
     @Autowired
-    private StudentRepository studentRepository;
-
+    private StudentService studentService;
 
     @PostMapping("/students")
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.saveStudent(student);
+    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student) {
+        studentService.saveStudent(student);
+        return studentService.responseStudent(student);
     }
 
     @GetMapping("/students/{id}")
-    public Optional<Student> getStudent(@PathVariable Long id) {
-        Optional<Student> student = studentService.getStudent(id);
-        return student;
+    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
+        Student s = studentService.getStudent(id);
+        return studentService.responseStudent(s);
     }
-
-    @PostMapping("/reviews")
-    public Review addReview(@RequestBody Review review) {
-        return reviewRepository.save(review);
-    }
-
 
     @GetMapping("/students")
-    public List<Student> getStudents() {
-        return studentService.getStudents();
+    public ResponseEntity<List<Student>> getStudents() {
+        return studentService.responseStudents(studentService.getStudents());
+    }
+
+    @PutMapping("/students/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @Valid @RequestBody Student student) {
+        Student updateStudent = studentService.getStudent(id);
+        studentService.updateStudent(updateStudent, student);
+        studentService.saveStudent(updateStudent);
+        return ResponseEntity.ok(updateStudent);
+    }
+
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity<Student> deleteStudent(@PathVariable Long id){
+        Student student = studentService.getStudent(id);
+        studentService.deleteStudent(id);
+        return studentService.responseStudent(student);
+    }
+
+    // POUR LE DTO (EVAN)
+
+    @PostMapping("/register")
+    public ResponseEntity<Student> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(studentService.register(request));
     }
 }

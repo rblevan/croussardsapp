@@ -4,14 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.ArrayList;
 import java.util.List;
+
+// import fr.univ_poitiers.croussards.model.Review;
 
 
 @Entity
 @Table(name = "students")
 @Data
-public class Student {
+public class Student implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long num_student;
@@ -26,10 +30,48 @@ public class Student {
 
     private String date_birth; // Ideally LocalDate
 
-    private String pseudo;
+    private String username;
 
     @OneToMany(mappedBy = "student")
     @JsonIgnore
     private List<Review> reviews = new ArrayList<>();
+
+    // DTO : UserDetails
+
+    @Override
+    public java.util.Collection<? extends org.springframework.security.core.GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.pwd_hash;
+    }
+
+    @Override
+    public String getUsername() {
+        return String.valueOf(this.num_student);
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 
 }
