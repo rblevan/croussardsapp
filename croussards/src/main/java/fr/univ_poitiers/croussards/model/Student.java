@@ -1,7 +1,9 @@
 package fr.univ_poitiers.croussards.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
+
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -11,29 +13,28 @@ import java.util.List;
 
 @Data
 @Entity
-public class Student implements UserDetails {
-    @OneToMany(mappedBy = "student")
-    private List<Review> reviews = new ArrayList<>();
-
+@Table(name = "students")
+@Data
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "num_student")
-    private Long numStudent;
+    private Long num_student;
 
     private String name;
 
-    @Column(name = "first_name")
-    private String firstName;
+    private String first_name;
 
     private String mail;
 
-    @Column(name = "pwd_hash")
-    private String pwdHash;
+    private String pwd_hash;
 
-    @Column(name = "date_birth")
-    private String dateBirth;
+    private String date_birth; // Ideally LocalDate
 
     private String username;
+
+    @OneToMany(mappedBy = "student")
+    @JsonIgnore
+    private List<Review> reviews = new ArrayList<>();
 
     // DTO : UserDetails
 
@@ -71,4 +72,6 @@ public class Student implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

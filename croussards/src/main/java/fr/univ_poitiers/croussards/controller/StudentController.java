@@ -4,20 +4,52 @@ import fr.univ_poitiers.croussards.dto.RegisterRequest;
 import fr.univ_poitiers.croussards.model.Student;
 import fr.univ_poitiers.croussards.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import fr.univ_poitiers.croussards.service.StudentService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 public class StudentController {
 
-    private final StudentService studentService;
+    @Autowired
+    private StudentService studentService;
 
-    @GetMapping("/")
-    public ResponseEntity<String> getStudents() {
-        return ResponseEntity.ok("Hello World");
+    @PostMapping("/students")
+    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student) {
+        studentService.saveStudent(student);
+        return studentService.responseStudent(student);
+    }
+
+    @GetMapping("/students/{id}")
+    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
+        Student s = studentService.getStudent(id);
+        return studentService.responseStudent(s);
+    }
+
+    @GetMapping("/students")
+    public ResponseEntity<List<Student>> getStudents() {
+        return studentService.responseStudents(studentService.getStudents());
+    }
+
+    @PutMapping("/students/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @Valid @RequestBody Student student) {
+        Student updateStudent = studentService.getStudent(id);
+        studentService.updateStudent(updateStudent, student);
+        studentService.saveStudent(updateStudent);
+        return ResponseEntity.ok(updateStudent);
+    }
+
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity<Student> deleteStudent(@PathVariable Long id){
+        Student student = studentService.getStudent(id);
+        studentService.deleteStudent(id);
+        return studentService.responseStudent(student);
     }
 
     // POUR LE DTO (EVAN)
