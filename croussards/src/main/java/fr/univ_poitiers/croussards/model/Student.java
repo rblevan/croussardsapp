@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.List;
 
-// Supposant que la classe Review existe aussi dans ce package ou est importée
 // import fr.univ_poitiers.croussards.model.Review;
 
 @Data
@@ -17,7 +16,7 @@ public class Student implements UserDetails {
     private List<Review> reviews = new ArrayList<>();
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "num_student")
     private Long numStudent;
 

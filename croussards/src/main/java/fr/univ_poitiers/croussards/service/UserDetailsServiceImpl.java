@@ -20,6 +20,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         try {
             Long numStudent = Long.parseLong(username);
             return studentRepository.findById(numStudent)
+
+                    // todo : exception request
                     .orElseThrow(() -> new UsernameNotFoundException("Aucun étudiant trouvé avec le numéro : " + username));
         } catch (NumberFormatException e) {
             throw new UsernameNotFoundException("Format du numéro étudiant invalide : " + username);

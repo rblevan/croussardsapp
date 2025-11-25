@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class StudentService {
 
-    private StudentRepository studentRepository;
-    private PasswordEncoder passwordEncoder;
+    private final StudentRepository studentRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Student register(RegisterRequest request) {
         Student newStudent = new Student();
@@ -29,6 +29,4 @@ public class StudentService {
     public java.util.List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
-
-
 }
