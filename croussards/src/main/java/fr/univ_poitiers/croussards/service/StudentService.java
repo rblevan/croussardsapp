@@ -1,7 +1,14 @@
 package fr.univ_poitiers.croussards.service;
 
+// import from our package
+
+import fr.univ_poitiers.croussards.dto.RegisterRequest;
 import fr.univ_poitiers.croussards.model.Student;
 import fr.univ_poitiers.croussards.repository.StudentRepository;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,10 +20,12 @@ import java.util.List;
 
 @Data
 @Service
+@RequiredArgsConstructor
 public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Student getStudent(Long id) {
         return studentRepository.findById(id)
@@ -58,5 +67,21 @@ public class StudentService {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(students);
+    }
+
+    // DTO
+
+    public Student register(RegisterRequest request) {
+        Student newStudent = new Student();
+        newStudent.setName(request.getName());
+        newStudent.setFirstName(request.getFirstName());
+        newStudent.setMail(request.getMail());
+        newStudent.setPwdHash(passwordEncoder.encode(request.getPassword()));
+
+        return studentRepository.save(newStudent);
+    }
+
+    public java.util.List<Student> getAllStudents() {
+        return studentRepository.findAll();
     }
 }

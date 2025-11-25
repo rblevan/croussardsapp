@@ -1,6 +1,9 @@
 package fr.univ_poitiers.croussards.controller;
 
+import fr.univ_poitiers.croussards.dto.RegisterRequest;
 import fr.univ_poitiers.croussards.model.Student;
+import fr.univ_poitiers.croussards.service.StudentService;
+import lombok.RequiredArgsConstructor;
 import fr.univ_poitiers.croussards.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class StudentController {
 
     @Autowired
@@ -45,5 +50,12 @@ public class StudentController {
         Student student = studentService.getStudent(id);
         studentService.deleteStudent(id);
         return studentService.responseStudent(student);
+    }
+
+    // POUR LE DTO (EVAN)
+
+    @PostMapping("/register")
+    public ResponseEntity<Student> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(studentService.register(request));
     }
 }
