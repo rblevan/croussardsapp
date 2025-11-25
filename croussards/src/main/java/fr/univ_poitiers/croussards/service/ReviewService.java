@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Service
 @Data
 public class ReviewService {
@@ -22,7 +20,7 @@ public class ReviewService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Review not found"));
     }
 
-    public List<Review> getReviews() {
+    public Iterable<Review> getReviews() {
         return reviewRepository.findAll();
     }
 
@@ -51,7 +49,7 @@ public class ReviewService {
         return ResponseEntity.ok(review);
     }
 
-    public ResponseEntity<List<Review>> responseReviews(List<Review> reviews){
+    public ResponseEntity<Iterable<Review>> responseReviews(Iterable<Review> reviews){
         if (reviews == null){
             return ResponseEntity.notFound().build();
         }

@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class StudentController {
 
@@ -28,7 +26,7 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public ResponseEntity<List<Student>> getStudents() {
+    public ResponseEntity<Iterable<Student>> getStudents() {
         return studentService.responseStudents(studentService.getStudents());
     }
 

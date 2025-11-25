@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Data
 @Service
 public class StudentService {
@@ -23,7 +21,7 @@ public class StudentService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found"));
     }
 
-    public List<Student> getStudents() {
+    public Iterable<Student> getStudents() {
         return studentRepository.findAll();
     }
 
@@ -37,9 +35,9 @@ public class StudentService {
 
     public void updateStudent (Student student, Student updateStudent){
         student.setNum_student(updateStudent.getNum_student());
-        student.setName(updateStudent.getName());
-        student.setFirst_name(updateStudent.getFirst_name());
-        student.setPseudo(updateStudent.getPseudo());
+        student.setLast_name(updateStudent.getLast_name().toUpperCase());
+        student.setFirst_name(updateStudent.getFirst_name().toUpperCase());
+        student.setPseudo(updateStudent.getPseudo().toLowerCase());
         student.setPwd_hash(updateStudent.getPwd_hash());
         student.setMail(updateStudent.getMail());
         student.setDate_birth(updateStudent.getDate_birth());
@@ -53,7 +51,7 @@ public class StudentService {
         return ResponseEntity.ok(student);
     }
 
-    public ResponseEntity<List<Student>> responseStudents(List<Student> students){
+    public ResponseEntity<Iterable<Student>> responseStudents(Iterable<Student> students){
         if (students == null){
             return ResponseEntity.notFound().build();
         }

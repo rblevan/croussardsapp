@@ -1,9 +1,9 @@
 
-INSERT INTO students (num_student,name,first_name,mail,pwd_hash,date_birth,pseudo) VALUES
-    (1, 'Jean', 'Dupont', 'jean.dupont@mail.com', 'hash123', '2000-05-15', 'jdupont17'),
-    (2, 'Lucas', 'Martin', 'lucas.martin@mail.com', 'hash124', '2002-02-07', 'lmartin23'),
-    (3, 'Louise', 'Cartier', 'louise.cartier@mail.com', 'hash125', '2004-03-19', 'lcartier1'),
-    (4, 'Maria', 'Dior', 'maria.dior@mail.com', 'hash126', '2006-09-24', 'mdior12');
+INSERT INTO students (num_student,last_name,first_name,mail,pwd_hash,date_birth,pseudo) VALUES
+    (1, 'JEAN', 'DUPONT', 'jean.dupont@mail.com', 'hash123', '2000-05-15', 'jdupont17'),
+    (2, 'LUCAS', 'MARTIN', 'lucas.martin@mail.com', 'hash124', '2002-02-07', 'lmartin23'),
+    (3, 'LOUISE', 'CARTIER', 'louise.cartier@mail.com', 'hash125', '2004-03-19', 'lcartier1'),
+    (4, 'MARIA', 'DIOR', 'maria.dior@mail.com', 'hash126', '2006-09-24', 'mdior12');
 
 INSERT INTO restaurants (id_resto, name, address, type_resto) VALUES
     (1, 'Le Gourmet', '12 Rue de Paris', 'Français'),

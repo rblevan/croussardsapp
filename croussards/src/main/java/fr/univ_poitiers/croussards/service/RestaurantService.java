@@ -1,6 +1,7 @@
 package fr.univ_poitiers.croussards.service;
 
 import fr.univ_poitiers.croussards.model.Restaurant;
+import fr.univ_poitiers.croussards.model.Review;
 import fr.univ_poitiers.croussards.repository.RestaurantRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,20 +10,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
-
 @Service
 @Data
 public class RestaurantService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    @Autowired
+    private ReviewService reviewService;
+
     public Restaurant getRestaurant(Long id) {
         return restaurantRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
     }
 
-    public List<Restaurant> getRestaurants() {
+    public Iterable<Restaurant> getRestaurants() {
         return restaurantRepository.findAll();
     }
 
@@ -41,11 +43,18 @@ public class RestaurantService {
         return ResponseEntity.ok(restaurant);
     }
 
-    public ResponseEntity<List<Restaurant>> responseRestaurants(List<Restaurant> restaurants){
+    public ResponseEntity<Iterable<Restaurant>> responseRestaurants(Iterable<Restaurant> restaurants){
         if (restaurants == null){
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(restaurants);
+    }
+
+    public ResponseEntity<Iterable<Review>> responseReviews(Iterable<Review> reviews){
+        if (reviews == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(reviews);
     }
 
     public void updateRestaurant(Restaurant restaurant, Restaurant updateRestaurant){
@@ -54,5 +63,11 @@ public class RestaurantService {
         restaurant.setReviews(updateRestaurant.getReviews());
         restaurant.setId_resto(updateRestaurant.getId_resto());
         restaurant.setType_resto(updateRestaurant.getType_resto());
+    }
+
+    public Iterable<Review> getReviewsByRestaurant(Long idRestaurant){
+        Restaurant restaurant = getRestaurant(idRestaurant);
+
+        return restaurant.getReviews();
     }
 }

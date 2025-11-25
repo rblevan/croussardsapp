@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long num_student;
 
-    private String name;
+    private String last_name;
 
     private String first_name;
 
@@ -24,7 +25,7 @@ public class Student {
 
     private String pwd_hash;
 
-    private String date_birth; // Ideally LocalDate
+    private Date date_birth;
 
     private String pseudo;
 

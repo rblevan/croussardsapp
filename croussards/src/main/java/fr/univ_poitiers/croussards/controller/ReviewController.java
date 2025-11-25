@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class ReviewController {
 
@@ -28,7 +26,7 @@ public class ReviewController {
     }
 
     @GetMapping("/reviews")
-    public ResponseEntity<List<Review>> getReviews() {
+    public ResponseEntity<Iterable<Review>> getReviews() {
         return reviewService.responseReviews(reviewService.getReviews());
     }
 
