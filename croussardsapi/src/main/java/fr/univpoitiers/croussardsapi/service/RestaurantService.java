@@ -16,6 +16,9 @@ public class RestaurantService {
     @Autowired
     private RestaurantRepository restaurantRepository;
 
+    @Autowired
+    private ReviewService reviewService;
+
     public Restaurant getRestaurant(Long id) {
         return restaurantRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Restaurant not found"));
