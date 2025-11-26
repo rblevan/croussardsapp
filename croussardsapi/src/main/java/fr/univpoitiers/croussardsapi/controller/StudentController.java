@@ -1,10 +1,11 @@
-package fr.univ_poitiers.croussards.controller;
+package fr.univpoitiers.croussardsapi.controller;
 
 import fr.univ_poitiers.croussards.dto.RegisterRequest;
-import fr.univ_poitiers.croussards.model.Student;
-import fr.univ_poitiers.croussards.service.StudentService;
+import fr.univpoitiers.croussardsapi.model.Review;
+import fr.univpoitiers.croussardsapi.model.Student;
+import fr.univpoitiers.croussardsapi.service.StudentService;
+
 import lombok.RequiredArgsConstructor;
-import fr.univ_poitiers.croussards.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,20 +22,20 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/students")
-    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student) {
+    public ResponseEntity<?> addStudent(@Valid @RequestBody Student student) {
         studentService.saveStudent(student);
-        return studentService.responseStudent(student);
+        return studentService.myResponse(student);
     }
 
     @GetMapping("/students/{id}")
-    public ResponseEntity<Student> getStudent(@PathVariable Long id) {
+    public ResponseEntity<?> getStudent(@PathVariable Long id) {
         Student s = studentService.getStudent(id);
-        return studentService.responseStudent(s);
+        return studentService.myResponse(s);
     }
 
     @GetMapping("/students")
-    public ResponseEntity<List<Student>> getStudents() {
-        return studentService.responseStudents(studentService.getStudents());
+    public ResponseEntity<?> getStudents() {
+        return studentService.myResponse(studentService.getStudents());
     }
 
     @PutMapping("/students/{id}")
@@ -46,11 +47,16 @@ public class StudentController {
     }
 
     @DeleteMapping("/students/{id}")
-    public ResponseEntity<Student> deleteStudent(@PathVariable Long id){
+    public ResponseEntity<?> deleteStudent(@PathVariable Long id){
         Student student = studentService.getStudent(id);
         studentService.deleteStudent(id);
-        return studentService.responseStudent(student);
+        return studentService.myResponse(student);
     }
+
+    @GetMapping("/students/{id}/reviews")
+    public ResponseEntity<?> getReviewsByStudent(@PathVariable Long id){
+        Iterable<Review> reviews = studentService.getReviews(id);
+        return studentService.myResponse(reviews);
 
     // POUR LE DTO (EVAN)
 

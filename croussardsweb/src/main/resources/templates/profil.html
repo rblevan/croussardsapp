@@ -1,45 +1,67 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Croussards - Avis & Restaurants</title>
-    
-    <link rel="stylesheet" href="../static/css/style.css">
+    <title>student Web Application</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo-container">
-            <img src="../static/images/croussards-logo.png" alt="Logo Croussards">
-            </div>
-            <h1>Croussards </h1>
-            <ul>
-                <li><a href="/index.html">Accueil</a></li>
-                <li><a href="/ajout_avis.html">Poster un Avis</a></li>
-                <li><a href="/profil.html">Mon Profil</a></li>
-            </ul>
-            <div class="brand-container">
-            <img src="../static/images/Logo-up.svg" alt="Logo Croussards">
-            </div>
-        </nav>
-    </header>
-    
-    <main class="container">
-        
-        <h2>Mon Profil</h2>
+<header>
+    <nav>
+        <div class="logo-container">
+            <img th:src="@{/images/croussards-logo.png}" alt="Logo Croussards">
+        </div>
+        <h1>Croussards </h1>
+        <ul>
+            <li><a th:href="@{/}">Accueil</a></li>
+            <li><a th:href="@{/profil}">Mon Profil</a></li>
+            <li><a th:href="@{/students}">Etudiants</a></li>
+            <li><a th:href="@{/restaurants}">Restaurants</a></li>
+        </ul>
+        <div class="brand-container">
+            <img th:src="@{/images/Logo-up.svg}" alt="Logo Croussards">
+        </div>
+    </nav>
+</header>
 
-        <section id="profile-info">
-            <p>Toujours en Travaux</p>
-        </section>
+<main class="container">
 
-    </main>
+    <div class="login-container">
+        <h2>LOGIN</h2>
 
-    <footer>
-        <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
-    </footer>
+        <div class="input-group">
+            <label for="email">EMAIL</label>
+            <input type="email" id="email" placeholder="your@email.com">
+        </div>
 
-    <script src="../static/js/main.js"></script>
+        <div class="input-group">
+            <label for="password">PASSWORD</label>
+            <input type="password" id="password" placeholder="••••••••">
+        </div>
+
+        <button type="submit">SIGN IN</button>
+
+        <div class="divider">OR</div>
+
+        <div class="social-login">
+            <div class="social-btn">G</div>
+            <div class="social-btn">F</div>
+            <div class="social-btn">X</div>
+        </div>
+
+        <div class="footer">
+            Don't have an account? <a href="#">Sign up</a>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 Équipe Croussards (Basile DUFRENE-Evan RIBOULEAU-Stephane CASTAN) - L3 Informatique</p>
+</footer>
+
+<script th:src="@{/js/main.js}"></script>
 
 </body>
 </html>

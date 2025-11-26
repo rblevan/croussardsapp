@@ -1,10 +1,10 @@
-package fr.univ_poitiers.croussards_front;
+package fr.univpoitiers.croussardsweb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CroussardsFrontApplicationTests {
+class CroussardsWebApplicationTests {
 
 	@Test
 	void contextLoads() {

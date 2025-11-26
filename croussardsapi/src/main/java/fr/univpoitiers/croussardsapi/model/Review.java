@@ -1,5 +1,6 @@
-package fr.univ_poitiers.croussards.model;
+package fr.univpoitiers.croussardsapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,10 +17,12 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "num_student")
+    @JsonIgnoreProperties({"reviews"})
     private Student student;
 
     @ManyToOne
     @JoinColumn(name = "id_resto")
+    @JsonIgnoreProperties({"reviews"})
     private Restaurant restaurant;
 
     private int nb_stars;

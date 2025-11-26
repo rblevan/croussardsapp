@@ -1,13 +1,12 @@
-package fr.univ_poitiers.croussards.controller;
+package fr.univpoitiers.croussardsapi.controller;
 
-import fr.univ_poitiers.croussards.model.Restaurant;
-import fr.univ_poitiers.croussards.service.RestaurantService;
+import fr.univpoitiers.croussardsapi.model.Restaurant;
+import fr.univpoitiers.croussardsapi.model.Review;
+import fr.univpoitiers.croussardsapi.service.RestaurantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController
@@ -28,8 +27,13 @@ public class RestaurantController {
     }
 
     @GetMapping("/restaurants")
-    public ResponseEntity<List<Restaurant>> getRestaurants() {
+    public ResponseEntity<Iterable<Restaurant>> getRestaurants() {
         return restaurantService.responseRestaurants(restaurantService.getRestaurants());
+    }
+
+    @GetMapping("/restaurants/{id}/reviews")
+    public ResponseEntity<Iterable<Review>> getReviewsByRestaurant(@PathVariable Long id) {
+        return restaurantService.responseReviews(restaurantService.getReviewsByRestaurant(id));
     }
 
     @PutMapping("/restaurants/{id}")

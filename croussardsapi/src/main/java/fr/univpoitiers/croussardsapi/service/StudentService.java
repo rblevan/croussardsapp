@@ -1,22 +1,21 @@
-package fr.univ_poitiers.croussards.service;
+package fr.univpoitiers.croussardsapi.service;
 
 // import from our package
 
-import fr.univ_poitiers.croussards.dto.RegisterRequest;
-import fr.univ_poitiers.croussards.model.Student;
-import fr.univ_poitiers.croussards.repository.StudentRepository;
+import fr.univpoitiers.croussardsapi.dto.RegisterRequest;
+import fr.univpoitiers.croussardsapi.model.Student;
+import fr.univpoitiers.croussardsapi.repository.ReviewRepository;
+import fr.univpoitiers.croussardsapi.repository.StudentRepository;
+import fr.univpoitiers.croussardsapi.model.Review;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @Data
 @Service
@@ -32,7 +31,7 @@ public class StudentService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found"));
     }
 
-    public List<Student> getStudents() {
+    public Iterable<Student> getStudents() {
         return studentRepository.findAll();
     }
 
@@ -46,24 +45,20 @@ public class StudentService {
 
     public void updateStudent (Student student, Student updateStudent){
         student.setNum_student(updateStudent.getNum_student());
-        student.setName(updateStudent.getName());
-        student.setFirst_name(updateStudent.getFirst_name());
-        student.setUsername(updateStudent.getUsername());
+        student.setLast_name(updateStudent.getLast_name().toUpperCase());
+        student.setFirst_name(updateStudent.getFirst_name().toUpperCase());
+        student.setUsername(updateStudent.getUsername().toLowerCase());
         student.setPwd_hash(updateStudent.getPwd_hash());
         student.setMail(updateStudent.getMail());
         student.setDate_birth(updateStudent.getDate_birth());
         student.setReviews(updateStudent.getReviews());
     }
 
-    public ResponseEntity<Student> responseStudent(Student student){
-        if (student == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(student);
-    }
 
-    public ResponseEntity<List<Student>> responseStudents(List<Student> students){
-        if (students == null){
+    public ResponseEntity<?> myResponse(Object body) {
+        if (body != null) {
+            return ResponseEntity.ok(body);
+        } else {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(students);
@@ -81,7 +76,8 @@ public class StudentService {
         return studentRepository.save(newStudent);
     }
 
-    public java.util.List<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public Iterable<Review> getReviews(Long idStudent){
+        Student student = getStudent(idStudent);
+        return student.getReviews();
     }
 }

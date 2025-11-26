@@ -1,15 +1,13 @@
-package fr.univ_poitiers.croussards.service;
+package fr.univpoitiers.croussardsapi.service;
 
-import fr.univ_poitiers.croussards.model.Review;
-import fr.univ_poitiers.croussards.repository.ReviewRepository;
+import fr.univpoitiers.croussardsapi.model.Review;
+import fr.univpoitiers.croussardsapi.repository.ReviewRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @Service
 @Data
@@ -22,7 +20,7 @@ public class ReviewService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Review not found"));
     }
 
-    public List<Review> getReviews() {
+    public Iterable<Review> getReviews() {
         return reviewRepository.findAll();
     }
 
@@ -51,7 +49,7 @@ public class ReviewService {
         return ResponseEntity.ok(review);
     }
 
-    public ResponseEntity<List<Review>> responseReviews(List<Review> reviews){
+    public ResponseEntity<Iterable<Review>> responseReviews(Iterable<Review> reviews){
         if (reviews == null){
             return ResponseEntity.notFound().build();
         }
