@@ -18,9 +18,6 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    @Autowired
-    private ReviewRepository reviewRepository;
-
     public Student getStudent(Long id) {
         return studentRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found"));
