@@ -2,7 +2,6 @@ package fr.univpoitiers.croussardsapi.service;
 
 import fr.univpoitiers.croussardsapi.model.Review;
 import fr.univpoitiers.croussardsapi.model.Student;
-import fr.univpoitiers.croussardsapi.repository.ReviewRepository;
 import fr.univpoitiers.croussardsapi.repository.StudentRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class StudentService {
         student.setNum_student(updateStudent.getNum_student());
         student.setLast_name(updateStudent.getLast_name().toUpperCase());
         student.setFirst_name(updateStudent.getFirst_name().toUpperCase());
-        student.setPseudo(updateStudent.getPseudo().toLowerCase());
+        student.setUsername(updateStudent.getUsername().toLowerCase());
         student.setPwd_hash(updateStudent.getPwd_hash());
         student.setMail(updateStudent.getMail());
         student.setDate_birth(updateStudent.getDate_birth());
