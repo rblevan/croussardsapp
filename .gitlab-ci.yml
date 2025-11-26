@@ -46,3 +46,6 @@ build-docker-image:
 deployement:
   stage: deploy
   image: docker:20.10.16
+  script:
+    - echo "Début du déploiement..."
+    - echo "Pour l'instant, je ne fais rien, mais le pipeline fonctionne !"
