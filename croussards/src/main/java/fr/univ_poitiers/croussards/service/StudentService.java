@@ -1,6 +1,8 @@
 package fr.univ_poitiers.croussards.service;
 
+import fr.univ_poitiers.croussards.model.Review;
 import fr.univ_poitiers.croussards.model.Student;
+import fr.univ_poitiers.croussards.repository.ReviewRepository;
 import fr.univ_poitiers.croussards.repository.StudentRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     public Student getStudent(Long id) {
         return studentRepository.findById(id)
@@ -44,17 +49,17 @@ public class StudentService {
         student.setReviews(updateStudent.getReviews());
     }
 
-    public ResponseEntity<Student> responseStudent(Student student){
-        if (student == null){
+
+    public ResponseEntity<?> myResponse(Object body) {
+        if (body != null) {
+            return ResponseEntity.ok(body);
+        } else {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(student);
     }
 
-    public ResponseEntity<Iterable<Student>> responseStudents(Iterable<Student> students){
-        if (students == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(students);
+    public Iterable<Review> getReviews(Long idStudent){
+        Student student = getStudent(idStudent);
+        return student.getReviews();
     }
 }

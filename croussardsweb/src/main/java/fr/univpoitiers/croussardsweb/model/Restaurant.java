@@ -1,5 +1,6 @@
 package fr.univpoitiers.croussardsweb.model;
 
+
 import lombok.Data;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public class Restaurant {
     private String address;
 
     private String type_resto;
+
+    private Iterable<Review> reviews;
 
 
 }

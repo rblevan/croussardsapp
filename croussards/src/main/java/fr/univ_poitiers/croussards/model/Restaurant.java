@@ -1,9 +1,11 @@
 package fr.univ_poitiers.croussards.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,7 +26,7 @@ public class Restaurant {
     private String type_resto;
 
     @OneToMany(mappedBy = "restaurant")
-    @JsonIgnore
-    private List<Review> reviews;
+    @JsonIgnoreProperties("restaurant")
+    private List<Review> reviews = new ArrayList<>();
 
 }

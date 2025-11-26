@@ -2,7 +2,9 @@ package fr.univpoitiers.croussardsweb.model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Student {
@@ -19,5 +21,7 @@ public class Student {
     private Date date_birth;
 
     private String pseudo;
+
+    private Iterable<Review> reviews;
 
 }

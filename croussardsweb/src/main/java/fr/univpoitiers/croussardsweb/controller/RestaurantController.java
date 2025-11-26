@@ -1,14 +1,12 @@
 package fr.univpoitiers.croussardsweb.controller;
 
 import fr.univpoitiers.croussardsweb.model.Restaurant;
-import fr.univpoitiers.croussardsweb.model.Review;
 import fr.univpoitiers.croussardsweb.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 
@@ -42,22 +40,17 @@ public class RestaurantController {
         return "restaurant";
     }
 
-   /* @GetMapping("/restaurants/{id}/reviews")
+   @GetMapping("/restaurants/{id}/reviews")
     public String getRestaurantReviews(Model model, @PathVariable Long id) {
-
         Restaurant restaurant = restaurantService.getRestaurant(id);
-        if (restaurant == null) {
-            return "restaurants";
-        }
 
-        Iterable<Review> reviews = restaurant.getReviewsBy();
+       if (restaurant == null) {
+           return "/restaurants";
+       }
 
         model.addAttribute("restaurant", restaurant);
-        model.addAttribute("reviews", reviews);
+        model.addAttribute("reviews", restaurant.getReviews());
 
-        return "restaurant_reviews"; // page HTML à créer
+        return "restaurant_reviews";
     }
-
-
-    */
 }

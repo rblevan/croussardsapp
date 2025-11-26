@@ -39,6 +39,7 @@
             <th>Mots de passe</th>
             <th>Date de naissance</th>
             <th>pseudo</th>
+            <th>Avis</th>
         </tr>
         </thead>
         <tbody>
@@ -53,6 +54,11 @@
             <td><span th:text="${student.pwd_hash}">Mots de passe</span></td>
             <td><span th:text="${student.date_birth}">Date de naissance</span></td>
             <td><span th:text="${student.pseudo}">pseudo</span></td>
+            <td>
+                <a th:href="@{'/students/' + ${student.num_student} + '/reviews'}">
+                    Voir les avis
+                </a>
+            </td>
 
         </tr>
         </tbody>

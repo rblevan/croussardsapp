@@ -1,6 +1,7 @@
 package fr.univ_poitiers.croussards.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -30,7 +31,7 @@ public class Student {
     private String pseudo;
 
     @OneToMany(mappedBy = "student")
-    @JsonIgnore
+    @JsonIgnoreProperties("student")
     private List<Review> reviews = new ArrayList<>();
 
 }

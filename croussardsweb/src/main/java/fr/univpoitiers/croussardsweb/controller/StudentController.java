@@ -3,7 +3,6 @@ package fr.univpoitiers.croussardsweb.controller;
 import fr.univpoitiers.croussardsweb.model.Student;
 import fr.univpoitiers.croussardsweb.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,5 +39,19 @@ public class StudentController {
 
         model.addAttribute("student", student);
         return "student";
+    }
+
+    @GetMapping("/students/{id}/reviews")
+    public String getStudentReviews(Model model, @PathVariable Long id) {
+        Student student = studentService.getStudent(id);
+
+        if (student == null) {
+            return "/students";
+        }
+
+        model.addAttribute("student", student);
+        model.addAttribute("reviews", student.getReviews());
+
+        return "student_reviews";
     }
 }
