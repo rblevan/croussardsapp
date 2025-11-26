@@ -1,0 +1,48 @@
+image: ubuntu:latest
+
+stages:
+  - build-front
+  - build-back
+  - build-image
+  - deploy
+
+build-frontend:
+  stage: build-front
+  image: node:18-alpine
+  script:
+    - cd croussards_front
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - croussards_front/dist/
+    expire_in: 1 day
+
+build-backend:
+  stage: build-back
+  image: maven:3.9-eclipse-temurin25
+  script:
+    - cd croussards_back
+    - mvn package
+  artifacts:
+    paths:
+      - croussards_back/target/*.jar
+    expire_in: 1 day
+
+build-docker-image:
+  stage: build-image
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  dependencies:
+    - build-frontend
+    - build-backend
+  before_script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  script:
+    - docker build -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+
+deployement:
+  stage: deploy
+  image: docker:20.10.16
