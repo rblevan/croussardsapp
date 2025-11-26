@@ -1,14 +1,21 @@
 package fr.univpoitiers.croussardsapi.controller;
 
+import fr.univ_poitiers.croussards.dto.RegisterRequest;
 import fr.univpoitiers.croussardsapi.model.Review;
 import fr.univpoitiers.croussardsapi.model.Student;
 import fr.univpoitiers.croussardsapi.service.StudentService;
+
+import lombok.RequiredArgsConstructor;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class StudentController {
 
     @Autowired
@@ -50,5 +57,11 @@ public class StudentController {
     public ResponseEntity<?> getReviewsByStudent(@PathVariable Long id){
         Iterable<Review> reviews = studentService.getReviews(id);
         return studentService.myResponse(reviews);
+
+    // POUR LE DTO (EVAN)
+
+    @PostMapping("/register")
+    public ResponseEntity<Student> register(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(studentService.register(request));
     }
 }
