@@ -2,12 +2,12 @@ DROP TABLE IF EXISTS students;
 
 CREATE TABLE students (
     num_student INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     mail VARCHAR(99) NOT NULL UNIQUE,
     pwd_hash VARCHAR(45) NOT NULL,
     date_birth DATE NULL,
-    username VARCHAR(45) UNIQUE
+    pseudo VARCHAR(45) UNIQUE
 );
 
 DROP TABLE IF EXISTS restaurants;

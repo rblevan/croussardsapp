@@ -1,13 +1,11 @@
-package fr.univ_poitiers.croussards.controller;
+package fr.univpoitiers.croussardsapi.controller;
 
-import fr.univ_poitiers.croussards.model.Review;
-import fr.univ_poitiers.croussards.service.ReviewService;
+import fr.univpoitiers.croussardsapi.model.Review;
+import fr.univpoitiers.croussardsapi.service.ReviewService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class ReviewController {
@@ -28,7 +26,7 @@ public class ReviewController {
     }
 
     @GetMapping("/reviews")
-    public ResponseEntity<List<Review>> getReviews() {
+    public ResponseEntity<Iterable<Review>> getReviews() {
         return reviewService.responseReviews(reviewService.getReviews());
     }
 

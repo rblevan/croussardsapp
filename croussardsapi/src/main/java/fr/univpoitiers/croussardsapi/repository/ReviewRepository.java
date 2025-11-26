@@ -1,6 +1,6 @@
-package fr.univ_poitiers.croussards.repository;
+package fr.univpoitiers.croussardsapi.repository;
 
-import fr.univ_poitiers.croussards.model.Review;
+import fr.univpoitiers.croussardsapi.model.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

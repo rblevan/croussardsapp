@@ -1,4 +1,4 @@
-package fr.univ_poitiers.croussards;
+package fr.univpoitiers.croussardsapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

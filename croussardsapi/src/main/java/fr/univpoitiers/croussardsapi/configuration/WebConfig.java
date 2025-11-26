@@ -1,4 +1,4 @@
-package fr.univ_poitiers.croussards.configuration;
+package fr.univpoitiers.croussardsapi.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

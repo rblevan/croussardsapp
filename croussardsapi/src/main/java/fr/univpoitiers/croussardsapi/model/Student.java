@@ -1,15 +1,14 @@
-package fr.univ_poitiers.croussards.model;
+package fr.univpoitiers.croussardsapi.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-// import fr.univ_poitiers.croussards.model.Review;
 
 
 @Entity
@@ -20,7 +19,7 @@ public class Student implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long num_student;
 
-    private String name;
+    private String last_name;
 
     private String first_name;
 
@@ -28,12 +27,12 @@ public class Student implements UserDetails {
 
     private String pwd_hash;
 
-    private String date_birth; // Ideally LocalDate
+    private Date date_birth;
 
     private String username;
 
     @OneToMany(mappedBy = "student")
-    @JsonIgnore
+    @JsonIgnoreProperties("student")
     private List<Review> reviews = new ArrayList<>();
 
     // DTO : UserDetails
