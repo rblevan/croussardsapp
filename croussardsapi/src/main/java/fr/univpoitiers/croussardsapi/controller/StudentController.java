@@ -16,12 +16,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @PostMapping("/students")
-    public ResponseEntity<?> addStudent(@Valid @RequestBody Student student) {
-        studentService.saveStudent(student);
-        return studentService.myResponse(student);
-    }
-
     @GetMapping("/students/{id}")
     public ResponseEntity<?> getStudent(@PathVariable Long id) {
         Student s = studentService.getStudent(id);
@@ -33,12 +27,18 @@ public class StudentController {
         return studentService.myResponse(studentService.getStudents());
     }
 
+    @PostMapping("/students")
+    public ResponseEntity<?> addStudent(@Valid @RequestBody Student student) {
+        studentService.saveStudent(student);
+        return studentService.myResponse(student);
+    }
+
     @PutMapping("/students/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable Long id, @Valid @RequestBody Student student) {
+    public ResponseEntity<?> updateStudent(@PathVariable Long id, @Valid @RequestBody Student student) {
         Student updateStudent = studentService.getStudent(id);
         studentService.updateStudent(updateStudent, student);
         studentService.saveStudent(updateStudent);
-        return ResponseEntity.ok(updateStudent);
+        return studentService.myResponse(updateStudent);
     }
 
     @DeleteMapping("/students/{id}")
