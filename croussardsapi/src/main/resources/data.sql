@@ -1,5 +1,5 @@
 
-INSERT INTO students (num_student,last_name,first_name,mail,pwd_hash,date_birth,pseudo) VALUES
+INSERT INTO students (num_student,last_name,first_name,mail,pwd_hash,date_birth,usurname) VALUES
     (1, 'JEAN', 'DUPONT', 'jean.dupont@mail.com', 'hash123', '2000-05-15', 'jdupont17'),
     (2, 'LUCAS', 'MARTIN', 'lucas.martin@mail.com', 'hash124', '2002-02-07', 'lmartin23'),
     (3, 'LOUISE', 'CARTIER', 'louise.cartier@mail.com', 'hash125', '2004-03-19', 'lcartier1'),
