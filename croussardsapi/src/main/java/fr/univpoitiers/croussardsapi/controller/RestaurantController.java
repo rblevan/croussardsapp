@@ -14,41 +14,44 @@ public class RestaurantController {
     @Autowired
     private RestaurantService restaurantService;
 
-    @PostMapping("/restaurants")
-    public ResponseEntity<Restaurant> addRestaurant(@Valid @RequestBody Restaurant restaurant) {
-        restaurantService.saveRestaurant(restaurant);
-        return restaurantService.responseRestaurant(restaurant);
-    }
 
     @GetMapping("/restaurants/{id}")
-    public ResponseEntity<Restaurant> getRestaurant(@PathVariable Long id) {
+    public ResponseEntity<?> getRestaurant(@PathVariable Long id) {
         Restaurant r = restaurantService.getRestaurant(id);
-        return restaurantService.responseRestaurant(r);
+        return restaurantService.myResponse(r);
     }
 
     @GetMapping("/restaurants")
-    public ResponseEntity<Iterable<Restaurant>> getRestaurants() {
-        return restaurantService.responseRestaurants(restaurantService.getRestaurants());
+    public ResponseEntity<?> getRestaurants() {
+        Iterable<Restaurant> restaurants = restaurantService.getRestaurants();
+        return restaurantService.myResponse(restaurants);
     }
 
     @GetMapping("/restaurants/{id}/reviews")
-    public ResponseEntity<Iterable<Review>> getReviewsByRestaurant(@PathVariable Long id) {
-        return restaurantService.responseReviews(restaurantService.getReviewsByRestaurant(id));
+    public ResponseEntity<?> getReviewsByRestaurant(@PathVariable Long id) {
+        Iterable<Review> reviews_restaurant = restaurantService.getReviewsByRestaurant(id);
+        return restaurantService.myResponse(reviews_restaurant);
+    }
+
+    @PostMapping("/restaurants")
+    public ResponseEntity<?> addRestaurant(@Valid @RequestBody Restaurant restaurant) {
+        restaurantService.saveRestaurant(restaurant);
+        return restaurantService.myResponse(restaurant);
     }
 
     @PutMapping("/restaurants/{id}")
-    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long id, @Valid @RequestBody Restaurant restaurant) {
+    public ResponseEntity<?> updateRestaurant(@PathVariable Long id, @Valid @RequestBody Restaurant restaurant) {
         Restaurant updateRestaurant = restaurantService.getRestaurant(id);
         restaurantService.updateRestaurant(updateRestaurant, restaurant);
         restaurantService.saveRestaurant(updateRestaurant);
-        return ResponseEntity.ok(updateRestaurant);
+        return restaurantService.myResponse(updateRestaurant);
     }
 
     @DeleteMapping("/restaurants/{id}")
-    public ResponseEntity<Restaurant> deleteRestaurant(@PathVariable Long id){
+    public ResponseEntity<?> deleteRestaurant(@PathVariable Long id){
         Restaurant restaurant = restaurantService.getRestaurant(id);
         restaurantService.deleteRestaurant(id);
-        return restaurantService.responseRestaurant(restaurant);
+        return restaurantService.myResponse(restaurant);
     }
 
 

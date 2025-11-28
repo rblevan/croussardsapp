@@ -9,9 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-@Service
 @Data
+@Service
 public class ReviewService {
+
     @Autowired
     private ReviewRepository reviewRepository;
 
@@ -28,31 +29,24 @@ public class ReviewService {
         return reviewRepository.save(review);
     }
 
-    public void deleteReview(Long id){
+    public void deleteReview(Long id) {
         reviewRepository.deleteById(id);
     }
 
-    public void updateReview (Review review, Review updateReview){
-        review.setId_review(updateReview.getId_review());
+    public void updateReview(Review review, Review updateReview) {
+        review.setNb_stars(updateReview.getNb_stars());
         review.setComments(updateReview.getComments());
+        review.setDate_publi(updateReview.getDate_publi());
         review.setStudent(updateReview.getStudent());
         review.setRestaurant(updateReview.getRestaurant());
-        review.setNb_stars(updateReview.getNb_stars());
-        review.setDate_publi(updateReview.getDate_publi());
+        review.setId_review(updateReview.getId_review());
     }
 
-
-    public ResponseEntity<Review> responseReview(Review review){
-        if (review == null){
+    public ResponseEntity<?> myResponse(Object body) {
+        if (body != null) {
+            return ResponseEntity.ok(body);
+        } else {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(review);
-    }
-
-    public ResponseEntity<Iterable<Review>> responseReviews(Iterable<Review> reviews){
-        if (reviews == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(reviews);
     }
 }
