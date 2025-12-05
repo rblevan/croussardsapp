@@ -1,13 +1,12 @@
 DROP TABLE IF EXISTS students;
 
 CREATE TABLE students (
-    num_student INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_student INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     last_name VARCHAR(100) NOT NULL,
     first_name VARCHAR(100) NOT NULL,
     mail VARCHAR(99) NOT NULL UNIQUE,
     pwd_hash VARCHAR(45) NOT NULL,
-    date_birth DATE NULL,
-    usurname VARCHAR(45) UNIQUE
+    username VARCHAR(45) UNIQUE
 );
 
 DROP TABLE IF EXISTS restaurants;
@@ -23,19 +22,19 @@ DROP TABLE IF EXISTS reviews;
 
 CREATE TABLE reviews (
     id_review INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    num_student INT NOT NULL,
+    id_student INT NOT NULL,
     id_resto INT NOT NULL,
     nb_stars INT NOT NULL DEFAULT 5,
     comments VARCHAR(500),
     date_publi DATE NOT NULL,
 
-    CONSTRAINT fk_numEtu
-     FOREIGN KEY (num_student)
-     REFERENCES students(num_student)
+    CONSTRAINT fk_num_student
+     FOREIGN KEY (id_student)
+     REFERENCES students(id_student)
      ON DELETE CASCADE
      ON UPDATE NO ACTION,
 
-    CONSTRAINT fk_idResto
+    CONSTRAINT fk_id_resto
      FOREIGN KEY (id_resto)
      REFERENCES restaurants(id_resto)
      ON DELETE CASCADE

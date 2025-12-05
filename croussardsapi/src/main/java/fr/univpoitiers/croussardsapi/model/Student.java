@@ -3,37 +3,41 @@ package fr.univpoitiers.croussardsapi.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 
 @Entity
 @Table(name = "students")
 @Data
-public class Student{
+@NoArgsConstructor
+@AllArgsConstructor
+public class Student {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long num_student;
+    @Column(name = "num_student")
+    private Long numStudent;
 
-    private String last_name;
+    @Column(name = "last_name")
+    private String lastName;
 
-    private String first_name;
+    @Column(name = "first_name")
+    private String firstName;
 
+    @Column(name = "mail")
     private String mail;
 
-    private String pwd_hash;
+    @Column(name = "pwd_hash")
+    private String pwdHash;
 
-    private Date date_birth;
-
+    @Column(name = "username")
     private String username;
 
     @OneToMany(mappedBy = "student")
     @JsonIgnoreProperties("student")
     private List<Review> reviews = new ArrayList<>();
-
-
 
 }

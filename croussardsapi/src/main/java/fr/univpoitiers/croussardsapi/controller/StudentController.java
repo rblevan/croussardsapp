@@ -6,8 +6,8 @@ import fr.univpoitiers.croussardsapi.service.StudentService;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,9 +28,9 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<?> addStudent(@Valid @RequestBody Student student) {
-        studentService.saveStudent(student);
-        return studentService.myResponse(student);
+    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student) {
+        Student savedStudent = studentService.saveStudent(student);
+        return new ResponseEntity<>(savedStudent, HttpStatus.CREATED);
     }
 
     @PutMapping("/students/{id}")
@@ -42,10 +42,9 @@ public class StudentController {
     }
 
     @DeleteMapping("/students/{id}")
-    public ResponseEntity<?> deleteStudent(@PathVariable Long id) {
-        Student student = studentService.getStudent(id);
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
-        return studentService.myResponse(student);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/students/{id}/reviews")
