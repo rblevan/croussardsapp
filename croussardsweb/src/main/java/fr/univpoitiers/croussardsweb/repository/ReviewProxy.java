@@ -63,7 +63,7 @@ public class ReviewProxy {
 
     public Review createReview(Review review) {
         String baseApiUrl = customProperties.getApiUrl();
-        String createReviewUrl = baseApiUrl + "/reviews/" + review.getId_review();
+        String createReviewUrl = baseApiUrl + "/reviews/" + review.getIdReview();
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Review> response = restTemplate.exchange(
@@ -80,7 +80,7 @@ public class ReviewProxy {
 
     public Review updateReview(Review review) {
         String baseApiUrl = customProperties.getApiUrl();
-        String updateReviewUrl = baseApiUrl + "/reviews/" + review.getId_review();
+        String updateReviewUrl = baseApiUrl + "/reviews/" + review.getIdReview();
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put(updateReviewUrl, review);

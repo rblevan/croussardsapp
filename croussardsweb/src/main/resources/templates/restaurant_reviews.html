@@ -44,11 +44,11 @@
             <td colspan="6">Aucun avis pour ce restaurant</td>
         </tr>
         <tr th:each="review: ${reviews}">
-            <td th:text="${review.id_review}">ID Avis</td>
-            <td th:text="${review.student.num_student}">ID Etudiant</td>
-            <td th:text="${review.nb_stars}">Nombre d'étoiles</td>
+            <td th:text="${review.idReview}">ID Avis</td>
+            <td th:text="${review.student.numStudent}">ID Etudiant</td>
+            <td th:text="${review.nbStars}">Nombre d'étoiles</td>
             <td th:text="${review.comments}">Commentaire</td>
-            <td th:text="${#dates.format(review.date_publi, 'dd/MM/yyyy')}">Date de Publication</td>
+            <td th:text="${#temporals.format(review.datePubli, 'dd/MM/yyyy')}">Date de Publication</td>
         </tr>
         </tbody>
     </table>

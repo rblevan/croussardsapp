@@ -1,22 +1,22 @@
 package fr.univpoitiers.croussardsweb.model;
 
-
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class Review {
 
-    private Long id_review;
+    private Long idReview;
 
     private Student student;
 
     private Restaurant restaurant;
 
-    private int nb_stars;
+    private int nbStars;
 
     private String comments;
 
-    private Date date_publi;
+    private LocalDate datePubli;
+
 }

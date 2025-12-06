@@ -64,7 +64,7 @@ public class RestaurantProxy {
 
     public Restaurant createRestaurant(Restaurant restaurant) {
         String baseApiUrl = customProperties.getApiUrl();
-        String createRestaurantUrl = baseApiUrl + "/restaurants/" + restaurant.getId_resto();
+        String createRestaurantUrl = baseApiUrl + "/restaurants/" + restaurant.getIdResto();
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Restaurant> response = restTemplate.exchange(
@@ -81,7 +81,7 @@ public class RestaurantProxy {
 
     public Restaurant updateRestaurant(Restaurant restaurant) {
         String baseApiUrl = customProperties.getApiUrl();
-        String updateRestaurantUrl = baseApiUrl + "/restaurants/" + restaurant.getId_resto();
+        String updateRestaurantUrl = baseApiUrl + "/restaurants/" + restaurant.getIdResto();
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put(updateRestaurantUrl, restaurant);

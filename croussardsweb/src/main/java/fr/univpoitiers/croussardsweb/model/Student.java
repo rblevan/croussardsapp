@@ -1,27 +1,23 @@
 package fr.univpoitiers.croussardsweb.model;
 
 import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
 public class Student {
-    private Long num_student;
 
-    private String last_name;
+    private Long numStudent;
 
-    private String first_name;
+    private String lastName;
+
+    private String firstName;
 
     private String mail;
 
-    private String pwd_hash;
+    private String pwdHash;
 
-    private Date date_birth;
+    private String username;
 
-    private String pseudo;
-
-    private Iterable<Review> reviews;
+    private List<Review> reviews;
 
 }
