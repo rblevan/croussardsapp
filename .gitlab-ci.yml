@@ -18,7 +18,7 @@ check-network:
 
 build_backend:
   image: maven:3.9-eclipse-temurin-25
-  stage: build
+  stage: build-back
   variables:
     MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true" 
   script:
