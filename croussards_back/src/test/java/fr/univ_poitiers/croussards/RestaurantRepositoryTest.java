@@ -23,17 +23,17 @@ class RestaurantRepositoryTest {
 
     @Test
     void whenFindById_thenReturnRestaurant() {
-        // Given: Crée et persiste un restaurant
+        // nouveau restaurant à sauvegarder
         Restaurant restaurant = new Restaurant();
         restaurant.setName("Le Crous'tille");
         restaurant.setAddress("123 Rue de la Faim, Poitiers");
         restaurant.setType_resto("Universitaire");
         entityManager.persistAndFlush(restaurant);
 
-        // When: Tente de le retrouver par son ID
+        // retrouver le restaurant par son ID
         Optional<Restaurant> found = restaurantRepository.findById(restaurant.getId_resto());
 
-        // Then: Vérifie que le restaurant a été trouvé et que ses données sont correctes
+        //Vérifie que le restaurant a été trouvé et que ses données sont correctes
         assertThat(found).isPresent();
         assertThat(found.get().getName()).isEqualTo(restaurant.getName());
         assertThat(found.get().getAddress()).isEqualTo(restaurant.getAddress());

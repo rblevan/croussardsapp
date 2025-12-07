@@ -25,7 +25,7 @@ class ReviewRepositoryTest {
 
     @Test
     void whenSaved_thenCanBeFoundByIdWithRelationships() {
-        // Given: a persisted student and restaurant
+        // nouvel étudiant et nouveau restaurant à sauvegarder
         Student student = new Student();
         student.setUsername("testuser");
         student.setName("Doe");
@@ -36,21 +36,21 @@ class ReviewRepositoryTest {
         restaurant.setName("Le Crous'tille");
         entityManager.persist(restaurant);
 
-        // And a new review linking them
+        // nouvelle review à sauvegarder
         Review review = new Review();
         review.setStudent(student);
         review.setRestaurant(restaurant);
         review.setRating(4);
-        review.setComment("Pretty good!");
+        review.setComment("super bon!");
         review.setPublicationDate(LocalDateTime.now());
         entityManager.persistAndFlush(review);
 
-        // When: we try to find the review by its ID
+        // retrouver la review par son ID et vérifier les relations
         Optional<Review> foundReview = reviewRepository.findById(review.getId());
 
-        // Then: the review is found and its data and relationships are correct
+        // la review est trouvée et ses données sont correctes
         assertThat(foundReview).isPresent();
-        assertThat(foundReview.get().getComment()).isEqualTo("Pretty good!");
+        assertThat(foundReview.get().getComment()).isEqualTo("super bon!");
         assertThat(foundReview.get().getStudent().getId()).isEqualTo(student.getNum_student());
         assertThat(foundReview.get().getRestaurant().getId_resto()).isEqualTo(restaurant.getId_resto());
     }
