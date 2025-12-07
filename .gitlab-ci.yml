@@ -17,6 +17,7 @@ build_backend:
     - echo "Compil back-end... debut"
     - java -version
     - cd croussardsapi
+    - curl -I --connect-timeout 5 https://repo.maven.apache.org/maven2/
     - mvn clean compile
   artifacts:
     paths:
