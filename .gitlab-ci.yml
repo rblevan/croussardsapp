@@ -15,9 +15,10 @@ build_back:
     MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true"
   script:
     - echo "Compil back-end... debut"
+    - curl -I --fail https://repo.maven.apache.org/maven2/
+    - curl -I https://repo.maven.apache.org/maven2/ # Teste la connexion HTTPS au dépôt Maven
     - java -version
     - cd croussardsapi
-    - curl -I --connect-timeout 5 https://repo.maven.apache.org/maven2/
     - mvn clean compile
   artifacts:
     paths:
