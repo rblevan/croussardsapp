@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/students")
@@ -52,5 +53,20 @@ public class StudentController {
     public ResponseEntity<?> getReviewsByStudent(@PathVariable Long id) {
         Iterable<Review> reviews = studentService.getReviews(id);
         return studentService.myResponse(reviews);
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<Student> authenticateStudent(@RequestBody Student loginData) {
+
+        Student authenticatedStudent = studentService.authenticate(
+                loginData.getUsername(),
+                loginData.getPwdHash()
+        );
+
+        if (authenticatedStudent != null) {
+            return new ResponseEntity<>(authenticatedStudent, HttpStatus.OK);
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Identifiants invalides");
+        }
     }
 }

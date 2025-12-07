@@ -16,7 +16,7 @@
         <h1>Croussards</h1>
         <ul>
             <li><a th:href="@{/}">Accueil</a></li>
-            <li><a th:href="@{/profil}">Mon Profil</a></li>
+            <li><a th:href="@{/login}">Connexion</a></li>
             <li><a th:href="@{/students}">Etudiants</a></li>
             <li><a th:href="@{/restaurants}">Restaurants</a></li>
         </ul>
@@ -52,6 +52,9 @@
         </tr>
         </tbody>
     </table>
+    <a th:href="@{'/restaurants/' + ${restaurant.idResto} + '/reviews/new'}" class="btn btn-primary">
+        Ajouter un avis
+    </a>
 </main>
 
 <footer>

@@ -5,6 +5,7 @@ import fr.univpoitiers.croussardsweb.model.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -64,18 +65,19 @@ public class StudentProxy {
 
     public Student createStudent(Student student) {
         String baseApiUrl = customProperties.getApiUrl();
-        String createStudentUrl = baseApiUrl + "/students/" + student.getNumStudent();
+        String createStudentUrl = baseApiUrl + "/students";
 
         RestTemplate restTemplate = new RestTemplate();
+
+        HttpEntity<Student> request = new HttpEntity<>(student);
+
         ResponseEntity<Student> response = restTemplate.exchange(
                 createStudentUrl,
                 HttpMethod.POST,
-                null,
+                request,
                 Student.class
         );
-
         log.debug("Create Student call " + response.getStatusCode().toString());
-
         return response.getBody();
     }
 
@@ -89,6 +91,27 @@ public class StudentProxy {
         log.debug("Update Student call");
 
         return student;
+    }
+
+    public Student authenticate(String mail, String pwdHash) {
+
+        String authenticateUrl = customProperties.getApiUrl() + "/students/authenticate";
+
+        Student loginData = new Student();
+        loginData.setMail(mail);
+        loginData.setPwdHash(pwdHash);
+
+        HttpEntity<Student> request = new HttpEntity<>(loginData);
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<Student> response = restTemplate.exchange(
+                authenticateUrl,
+                HttpMethod.POST,
+                request,
+                Student.class
+        );
+        log.debug("Authenticate call " + response.getStatusCode().toString());
+        return response.getBody();
     }
 
 }

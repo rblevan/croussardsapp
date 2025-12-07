@@ -15,7 +15,7 @@
         <h1>Croussards </h1>
         <ul>
             <li><a th:href="@{/}">Accueil</a></li>
-            <li><a th:href="@{/profil}">Mon Profil</a></li>
+            <li><a th:href="@{/login}">Connexion</a></li>
             <li><a th:href="@{/students}">Etudiants</a></li>
             <li><a th:href="@{/restaurants}">Restaurants</a></li>
         </ul>
@@ -28,24 +28,25 @@
 <main class="container">
 
     <div class="login-container">
-        <h2>LOGIN</h2>
+        <h2>CONNEXION</h2>
 
-        <div class="input-group">
-            <label for="email">EMAIL</label>
-            <input type="email" id="email" placeholder="your@email.com">
-        </div>
+        <form action="/login" method="POST">
+            <div class="input-group">
+                <label for="username">USERNAME</label>
+                <input type="text" id="username" name="username" placeholder="scastan17">
+            </div>
 
-        <div class="input-group">
-            <label for="password">PASSWORD</label>
-            <input type="password" id="password" placeholder="••••••••">
-        </div>
+            <div class="input-group">
+                <label for="pwdHash">MOT DE PASSE</label>
+                <input type="password" id="pwdHash" name="pwdHash" placeholder="••••••••">
+            </div>
 
-        <button type="submit">SIGN IN</button>
+            <button type="submit">SE CONNECTER</button>
+        </form>
 
-        <div class="divider">OR</div>
-
+        <div class="divider">OU</div>
         <div class="footer">
-            Don't have an account? <a href="#">Sign up</a>
+            Pas encore inscrit? <a th:href="@{/register}">Créez votre compte ici</a>
         </div>
     </div>
 
