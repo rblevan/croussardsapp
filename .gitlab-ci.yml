@@ -3,6 +3,10 @@ image: maven:3.9-eclipse-temurin-25
 stages:
   - build-front
   - build-back
+  - test-front
+  - test-back
+  - deploy-front
+  - deploy-back
 
 build-frontend:
   stage: build-front
@@ -25,6 +29,50 @@ build-backend:
     - cd croussardsapi
     - mvn clean compile
     - echo "Compil back-end... fin"
+  artifacts:
+    paths:
+      - croussardsapi/target/
+    expire_in: 1 days
+
+test-front:
+  stage: test-front
+  script:
+    - echo "Test front"
+    - cd croussardsweb
+    - mvn test
+  artifacts:
+    paths:
+      - croussardsweb/target/
+    expire_in: 1 days
+
+test-back:
+  stage: test-back
+  script:
+    - echo "Test back"
+    - cd croussardsapi
+    - mvn test
+  artifacts:
+    paths:
+      - croussardsapi/target/
+    expire_in: 1 days
+
+deploy-front:
+  stage: build-front
+  script:
+    - echo "Deploy front"
+    - cd croussardsweb
+    - mvn deploy
+  artifacts:
+    paths:
+      - croussardsweb/target/
+    expire_in: 1 days
+
+deploy-back:
+  stage: build-back
+  script:
+    - echo "Deploy back"
+    - cd croussardsapi
+    - mvn deploy
   artifacts:
     paths:
       - croussardsapi/target/
