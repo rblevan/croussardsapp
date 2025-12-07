@@ -34,12 +34,12 @@ public class ReviewService {
     }
 
     public void updateReview(Review review, Review updateReview) {
-        review.setNb_stars(updateReview.getNb_stars());
+        review.setNbStars(updateReview.getNbStars());
         review.setComments(updateReview.getComments());
-        review.setDate_publi(updateReview.getDate_publi());
+        review.setDatePubli(updateReview.getDatePubli());
         review.setStudent(updateReview.getStudent());
         review.setRestaurant(updateReview.getRestaurant());
-        review.setId_review(updateReview.getId_review());
+        review.setIdReview(updateReview.getIdReview());
     }
 
     public ResponseEntity<?> myResponse(Object body) {

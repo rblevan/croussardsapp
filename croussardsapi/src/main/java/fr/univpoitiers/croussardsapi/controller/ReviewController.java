@@ -2,48 +2,49 @@ package fr.univpoitiers.croussardsapi.controller;
 
 import fr.univpoitiers.croussardsapi.model.Review;
 import fr.univpoitiers.croussardsapi.service.ReviewService;
+
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/reviews")
 public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping("/reviews/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getReview(@PathVariable Long id) {
-        Review s = reviewService.getReview(id);
-        return reviewService.myResponse(s);
+        Review review = reviewService.getReview(id);
+        return reviewService.myResponse(review);
     }
 
-    @GetMapping("/reviews")
+    @GetMapping
     public ResponseEntity<?> getReviews() {
         Iterable<Review> reviews = reviewService.getReviews();
         return reviewService.myResponse(reviews);
     }
 
-    @PostMapping("/reviews")
-    public ResponseEntity<?> addReview(@Valid @RequestBody Review review) {
-        reviewService.saveReview(review);
-        return reviewService.myResponse(review);
+    @PostMapping
+    public ResponseEntity<Review> addReview(@Valid @RequestBody Review review) {
+        Review savedReview = reviewService.saveReview(review);
+        return new ResponseEntity<>(savedReview, HttpStatus.CREATED);
     }
 
-    @PutMapping("/reviews/{id}")
-    public ResponseEntity<?> updateReview(@PathVariable Long id, @Valid @RequestBody Review Review) {
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateReview(@PathVariable Long id, @Valid @RequestBody Review review) {
         Review updateReview = reviewService.getReview(id);
-        reviewService.updateReview(updateReview, Review);
-        reviewService.saveReview(updateReview);
-        return reviewService.myResponse(updateReview);
+        reviewService.updateReview(updateReview, review);
+        Review savedUpdatedReview = reviewService.saveReview(updateReview);
+        return reviewService.myResponse(savedUpdatedReview);
     }
 
-    @DeleteMapping("/reviews/{id}")
-    public ResponseEntity<?> deleteReview(@PathVariable Long id){
-        Review review = reviewService.getReview(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteReview(@PathVariable Long id){
         reviewService.deleteReview(id);
-        return reviewService.myResponse(review);
+        return ResponseEntity.noContent().build();
     }
 }

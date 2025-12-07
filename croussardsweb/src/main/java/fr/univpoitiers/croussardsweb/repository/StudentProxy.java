@@ -64,7 +64,7 @@ public class StudentProxy {
 
     public Student createStudent(Student student) {
         String baseApiUrl = customProperties.getApiUrl();
-        String createStudentUrl = baseApiUrl + "/students/" + student.getNum_student();
+        String createStudentUrl = baseApiUrl + "/students/" + student.getNumStudent();
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Student> response = restTemplate.exchange(
@@ -81,7 +81,7 @@ public class StudentProxy {
 
     public Student updateStudent(Student student) {
         String baseApiUrl = customProperties.getApiUrl();
-        String updateStudentUrl = baseApiUrl + "/students/" + student.getNum_student();
+        String updateStudentUrl = baseApiUrl + "/students/" + student.getNumStudent();
 
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.put(updateStudentUrl, student);

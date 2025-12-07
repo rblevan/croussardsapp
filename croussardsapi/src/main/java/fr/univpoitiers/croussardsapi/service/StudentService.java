@@ -35,13 +35,12 @@ public class StudentService {
     }
 
     public void updateStudent (Student student, Student updateStudent){
-        student.setNum_student(updateStudent.getNum_student());
-        student.setLast_name(updateStudent.getLast_name().toUpperCase());
-        student.setFirst_name(updateStudent.getFirst_name().toUpperCase());
+        student.setNumStudent(updateStudent.getNumStudent());
+        student.setLastName(updateStudent.getLastName().toUpperCase());
+        student.setFirstName(updateStudent.getFirstName().toUpperCase());
         student.setUsername(updateStudent.getUsername().toLowerCase());
-        student.setPwd_hash(updateStudent.getPwd_hash());
+        student.setPwdHash(updateStudent.getPwdHash());
         student.setMail(updateStudent.getMail());
-        student.setDate_birth(updateStudent.getDate_birth());
         student.setReviews(updateStudent.getReviews());
     }
 

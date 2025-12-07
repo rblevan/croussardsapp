@@ -44,8 +44,8 @@ public class RestaurantService {
         restaurant.setName(updateRestaurant.getName());
         restaurant.setAddress(updateRestaurant.getAddress());
         restaurant.setReviews(updateRestaurant.getReviews());
-        restaurant.setId_resto(updateRestaurant.getId_resto());
-        restaurant.setType_resto(updateRestaurant.getType_resto());
+        restaurant.setIdResto(updateRestaurant.getIdResto());
+        restaurant.setTypeResto(updateRestaurant.getTypeResto());
     }
 
     public ResponseEntity<?> myResponse(Object body) {
