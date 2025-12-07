@@ -3,7 +3,6 @@ package fr.univpoitiers.croussardsweb.service;
 import fr.univpoitiers.croussardsweb.model.Student;
 import fr.univpoitiers.croussardsweb.repository.StudentProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,10 +17,6 @@ public class StudentService {
 
     public Iterable<Student> getStudents() {
         return studentProxy.getStudents();
-    }
-
-    public void deleteStudent(final int id) {
-        studentProxy.deleteStudent(id);
     }
 
     public Student saveStudent(Student student) {
@@ -39,19 +34,11 @@ public class StudentService {
         return savedStudent;
     }
 
-    public ResponseEntity<Student> responseStudent(Student student) {
-        if (student == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(student);
+    public Student loginStudent(String username, String password) {
+        return studentProxy.authenticate(username, password);
     }
 
-    public ResponseEntity<Iterable<Student>> responseStudents(Iterable<Student> students){
-        if (students == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(students);
-    }
+
 }
 
 
