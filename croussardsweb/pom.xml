@@ -8,11 +8,11 @@
 		<version>4.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>fr.univ_poitiers</groupId>
+	<groupId>fr.univpoitiers</groupId>
 	<artifactId>croussardsweb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>croussards_front</name>
-	<description>croussards_front</description>
+	<name>croussardsweb</name>
+	<description>croussardsweb</description>
 	<url/>
 	<licenses>
 		<license/>

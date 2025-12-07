@@ -57,4 +57,13 @@ public class StudentService {
         Student student = getStudent(idStudent);
         return student.getReviews();
     }
+
+    public Student authenticate(String username, String pwdHash) {
+        Student student = studentRepository.findByUsername(username);
+
+        if (student != null && student.getPwdHash().equals(pwdHash)) {
+            return student; // Authentification réussie
+        }
+        return null; // Échec de l'authentification
+    }
 }
