@@ -1,7 +1,6 @@
 image: maven:3.9-eclipse-temurin-25
 
 stages:
-  - check-network
   - build-back
   - test-back
   - deploy-back
@@ -9,22 +8,14 @@ stages:
   - test-front
   - deploy-front
 
-check-network:
-  stage: check-network
-  image: curlimages/curl
-  script:
-    - echo "Testing connectivity to Maven Central..."
-    - curl -I https://repo.maven.apache.org/maven2/
-
 build_backend:
-  image: maven:3.9-eclipse-temurin-25
   stage: build-back
+  image: maven:3.9-eclipse-temurin-25
   variables:
-    MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true"
-    MAVEN_CLI_OPTS: "-Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.connectionTimeout=60000 -Dmaven.wagon.httpconnectionManager.readTimeout=60000" 
+    MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true" 
   script:
     - echo "Compil back-end... debut"
-    - java -version
+    - echo "MAVEN_OPTS: $MAVEN_OPTS" 
     - cd croussardsapi
     - curl -I https://repo.maven.apache.org/maven2/
     - mvn clean compile
