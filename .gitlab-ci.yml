@@ -10,8 +10,13 @@ stages:
 
 build_back:
   stage: build-back
+  image: maven:3.9-eclipse-temurin-25
+  variables:
+    MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true"
   script:
     - echo "Compil back-end... debut"
+    - ping -c 3 8.8.8.8    # Teste la connectivité IP basique (vers Google DNS)
+    - curl -I https://repo.maven.apache.org/maven2/ # Teste la connexion HTTPS au dépôt Maven
     - java -version
     - cd croussardsapi
     - mvn clean compile
