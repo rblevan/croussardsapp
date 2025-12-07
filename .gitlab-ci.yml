@@ -6,7 +6,7 @@ stages:
 
 build-frontend:
   stage: build-front
-  commands:
+  script:
     - echo "Compil front-end... debut"
     - java -version
     - cd croussardsweb
@@ -19,7 +19,7 @@ build-frontend:
 
 build-backend:
   stage: build-back
-  commands:
+  script:
     - echo "Compil back-end... debut"
     - java -version
     - cd croussardsapi
