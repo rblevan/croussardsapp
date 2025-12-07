@@ -20,7 +20,8 @@ build_backend:
   image: maven:3.9-eclipse-temurin-25
   stage: build-back
   variables:
-    MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true" 
+    MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true"
+    MAVEN_CLI_OPTS: "-Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.connectionTimeout=60000 -Dmaven.wagon.httpconnectionManager.readTimeout=60000" 
   script:
     - echo "Compil back-end... debut"
     - java -version
