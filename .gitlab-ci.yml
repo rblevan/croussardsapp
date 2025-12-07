@@ -1,25 +1,12 @@
 image: maven:3.9-eclipse-temurin-25
 
 stages:
-  - build-front
   - build-back
-  - test-front
   - test-back
-  - deploy-front
   - deploy-back
-
-build-frontend:
-  stage: build-front
-  script:
-    - echo "Compil front-end... debut"
-    - java -version
-    - cd croussardsweb
-    - mvn clean compile
-    - echo "Compil front-end... fin"
-  artifacts:
-    paths:
-      - croussardsweb/target/
-    expire_in: 1 days
+  - build-front
+  - test-front
+  - deploy-front
 
 build-backend:
   stage: build-back
@@ -34,17 +21,6 @@ build-backend:
       - croussardsapi/target/
     expire_in: 1 days
 
-test-front:
-  stage: test-front
-  script:
-    - echo "Test front"
-    - cd croussardsweb
-    - mvn test
-  artifacts:
-    paths:
-      - croussardsweb/target/
-    expire_in: 1 days
-
 test-back:
   stage: test-back
   script:
@@ -56,8 +32,32 @@ test-back:
       - croussardsapi/target/
     expire_in: 1 days
 
-deploy-front:
+deploy-back:
+  stage: deploy-back
+  script:
+    - echo "Deploy back"
+    - cd croussardsapi
+    - mvn deploy
+  artifacts:
+    paths:
+      - croussardsapi/target/
+    expire_in: 1 days
+
+build-frontend:
   stage: build-front
+  script:
+    - echo "Compil front-end... debut"
+    - java -version
+    - cd croussardsweb
+    - mvn clean compile
+    - echo "Compil front-end... fin"
+  artifacts:
+    paths:
+      - croussardsweb/target/
+    expire_in: 1 days
+
+deploy-front:
+  stage: deploy-front
   script:
     - echo "Deploy front"
     - cd croussardsweb
@@ -67,13 +67,13 @@ deploy-front:
       - croussardsweb/target/
     expire_in: 1 days
 
-deploy-back:
-  stage: build-back
+test-front:
+  stage: test-front
   script:
-    - echo "Deploy back"
-    - cd croussardsapi
-    - mvn deploy
+    - echo "Test front"
+    - cd croussardsweb
+    - mvn test
   artifacts:
     paths:
-      - croussardsapi/target/
+      - croussardsweb/target/
     expire_in: 1 days
