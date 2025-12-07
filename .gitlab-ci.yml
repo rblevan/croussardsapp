@@ -8,14 +8,17 @@ stages:
   - test-front
   - deploy-front
 
-build-backend:
+build_back:
   stage: build-back
+  image: maven:3.9-eclipse-temurin-25
+  variables:
+    MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true"
   script:
     - echo "Compil back-end... debut"
     - java -version
     - cd croussardsapi
+    - curl -I --connect-timeout 5 https://repo.maven.apache.org/maven2/
     - mvn clean compile
-    - echo "Compil back-end... fin"
   artifacts:
     paths:
       - croussardsapi/target/
@@ -56,23 +59,23 @@ build-frontend:
       - croussardsweb/target/
     expire_in: 1 days
 
-deploy-front:
-  stage: deploy-front
-  script:
-    - echo "Deploy front"
-    - cd croussardsweb
-    - mvn deploy
-  artifacts:
-    paths:
-      - croussardsweb/target/
-    expire_in: 1 days
-
 test-front:
   stage: test-front
   script:
     - echo "Test front"
     - cd croussardsweb
     - mvn test
+  artifacts:
+    paths:
+      - croussardsweb/target/
+    expire_in: 1 days
+
+deploy-front:
+  stage: deploy-front
+  script:
+    - echo "Deploy front"
+    - cd croussardsweb
+    - mvn deploy
   artifacts:
     paths:
       - croussardsweb/target/
