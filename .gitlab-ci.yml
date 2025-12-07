@@ -8,7 +8,7 @@ stages:
   - test-front
   - deploy-front
 
-build_backend:
+build_back:
   stage: build-back
   image: maven:3.9-eclipse-temurin-25
   variables:
