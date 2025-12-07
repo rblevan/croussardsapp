@@ -22,6 +22,7 @@ build-backend:
     - echo "Compil back-end... debut"
     - java -version
     - cd croussardsapi
+    - curl -I https://repo.maven.apache.org/maven2/
     - mvn clean compile
     - echo "Compil back-end... fin"
   artifacts:
