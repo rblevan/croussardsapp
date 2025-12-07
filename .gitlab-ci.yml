@@ -1,12 +1,20 @@
 image: maven:3.9-eclipse-temurin-25
 
 stages:
+  - check-network
   - build-back
   - test-back
   - deploy-back
   - build-front
   - test-front
   - deploy-front
+
+check-network:
+  stage: check-network
+  image: curlimages/curl
+  script:
+    - echo "Testing connectivity to Maven Central..."
+    - curl -I https://repo.maven.apache.org/maven2/
 
 build-backend:
   stage: build-back
@@ -56,23 +64,23 @@ build-frontend:
       - croussardsweb/target/
     expire_in: 1 days
 
-deploy-front:
-  stage: deploy-front
-  script:
-    - echo "Deploy front"
-    - cd croussardsweb
-    - mvn deploy
-  artifacts:
-    paths:
-      - croussardsweb/target/
-    expire_in: 1 days
-
 test-front:
   stage: test-front
   script:
     - echo "Test front"
     - cd croussardsweb
     - mvn test
+  artifacts:
+    paths:
+      - croussardsweb/target/
+    expire_in: 1 days
+
+deploy-front:
+  stage: deploy-front
+  script:
+    - echo "Deploy front"
+    - cd croussardsweb
+    - mvn deploy
   artifacts:
     paths:
       - croussardsweb/target/
