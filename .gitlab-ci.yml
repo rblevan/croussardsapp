@@ -10,14 +10,10 @@ stages:
 
 build_back:
   stage: build-back
-  image: maven:3.9-eclipse-temurin-25
-  variables:
-    MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true"
   script:
     - echo "Compil back-end... debut"
     - java -version
     - cd croussardsapi
-    - curl -I --connect-timeout 5 https://repo.maven.apache.org/maven2/
     - mvn clean compile
   artifacts:
     paths:
