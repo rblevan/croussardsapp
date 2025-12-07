@@ -1,11 +1,10 @@
-package fr.univ_poitiers.croussards.repository;
+package fr.univpoitiers.croussardsback.repository;
 
 import fr.univ_poitiers.croussards.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
+    // You could add methods like findByUsername(String username) here
 }
