@@ -16,15 +16,17 @@ check-network:
     - echo "Testing connectivity to Maven Central..."
     - curl -I https://repo.maven.apache.org/maven2/
 
-build-backend:
-  stage: build-back
+build_backend:
+  image: maven:3.9-eclipse-temurin-25
+  stage: build
+  variables:
+    MAVEN_OPTS: "-Djava.net.preferIPv4Stack=true" 
   script:
     - echo "Compil back-end... debut"
     - java -version
     - cd croussardsapi
     - curl -I https://repo.maven.apache.org/maven2/
     - mvn clean compile
-    - echo "Compil back-end... fin"
   artifacts:
     paths:
       - croussardsapi/target/
