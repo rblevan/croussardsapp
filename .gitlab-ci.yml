@@ -1,51 +1,31 @@
-image: ubuntu:latest
+image: maven:3.9-eclipse-temurin-25
 
 stages:
   - build-front
   - build-back
-  - build-image
-  - deploy
 
 build-frontend:
   stage: build-front
-  image: node:18-alpine
-  script:
-    - cd croussards_front
-    - npm install
-    - npm run build
+  commands:
+    - echo "Compil front-end... debut"
+    - java -version
+    - cd croussardsweb
+    - mvn clean compile
+    - echo "Compil front-end... fin"
   artifacts:
     paths:
-      - croussards_front/dist/
-    expire_in: 1 day
+      - croussardsweb/target/
+    expire_in: 1 days
 
 build-backend:
   stage: build-back
-  image: maven:3.9-eclipse-temurin25
-  script:
-    - cd croussards_back
-    - mvn package
+  commands:
+    - echo "Compil back-end... debut"
+    - java -version
+    - cd croussardsapi
+    - mvn clean compile
+    - echo "Compil back-end... fin"
   artifacts:
     paths:
-      - croussards_back/target/*.jar
-    expire_in: 1 day
-
-build-docker-image:
-  stage: build-image
-  image: docker:20.10.16
-  services:
-    - docker:20.10.16-dind
-  dependencies:
-    - build-frontend
-    - build-backend
-  before_script:
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  script:
-    - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
-
-deployement:
-  stage: deploy
-  image: docker:20.10.16
-  script:
-    - echo "Début du déploiement..."
-    - echo "Pour l'instant, je ne fais rien, mais le pipeline fonctionne !"
+      - croussardsapi/target/
+    expire_in: 1 days
