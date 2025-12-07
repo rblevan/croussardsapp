@@ -1,22 +1,23 @@
 package fr.univpoitiers.croussardsweb.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class Restaurant {
 
-    private Long id_resto;
+    private Long idResto;
 
     private String name;
 
     private String address;
 
-    private String type_resto;
+    private String typeResto;
 
-    private Iterable<Review> reviews;
-
+    private List<Review> reviews;
 
 }

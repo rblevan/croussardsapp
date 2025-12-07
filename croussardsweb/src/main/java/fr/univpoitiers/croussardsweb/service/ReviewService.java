@@ -27,7 +27,7 @@ public class ReviewService {
     public Review saveReview(Review review) {
         Review savedReview;
 
-        if (review.getId_review() == null) {
+        if (review.getIdReview() == null) {
             savedReview = reviewProxy.createReview(review);
         } else {
             savedReview = reviewProxy.updateReview(review);

@@ -45,15 +45,15 @@
 
         <tr th:each="restaurant : ${restaurants}">
             <td>
-                <a th:href="@{'/restaurants/' + ${restaurant.id_resto}}">
-                    <span th:text="${restaurant.id_resto}">ID</span>
+                <a th:href="@{'/restaurants/' + ${restaurant.idResto}}">
+                    <span th:text="${restaurant.idResto}">ID</span>
                 </a>
             </td>
             <td><span th:text="${restaurant.name}">Nom</span></td>
             <td><span th:text="${restaurant.address}">Adresse</span></td>
-            <td><span th:text="${restaurant.type_resto}">Type</span></td>
+            <td><span th:text="${restaurant.typeResto}">Type</span></td>
             <td>
-                <a th:href="@{'/restaurants/' + ${restaurant.id_resto} + '/reviews'}">
+                <a th:href="@{'/restaurants/' + ${restaurant.idResto} + '/reviews'}">
                     Voir les avis
                 </a>
             </td>

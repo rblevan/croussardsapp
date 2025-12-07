@@ -47,15 +47,14 @@
             <td colspan="7">L'étudiant n'a pas été trouvé</td>
         </tr>
         <tr th:unless="${student == null}">
-            <td><span th:text="${student.num_student}">Numéro Etudiant</span></td>
-            <td><span th:text="${student.first_name}">Prénom</span></td>
-            <td><span th:text="${student.last_name}">Nom</span></td>
+            <td><span th:text="${student.numStudent}">Numéro Etudiant</span></td>
+            <td><span th:text="${student.firstName}">Prénom</span></td>
+            <td><span th:text="${student.lastName}">Nom</span></td>
             <td><span th:text="${student.mail}">Mail</span></td>
-            <td><span th:text="${student.pwd_hash}">Mots de passe</span></td>
-            <td><span th:text="${student.date_birth}">Date de naissance</span></td>
-            <td><span th:text="${student.pseudo}">pseudo</span></td>
+            <td><span th:text="${student.pwdHash}">Mots de passe</span></td>
+            <td><span th:text="${student.username}">pseudo</span></td>
             <td>
-                <a th:href="@{'/student/' + ${student.num_student} + '/reviews'}">
+                <a th:href="@{'/student/' + ${student.numStudent} + '/reviews'}">
                     Voir les avis
                 </a>
             </td>

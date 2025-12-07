@@ -27,10 +27,10 @@ public class StudentService {
     public Student saveStudent(Student student) {
         Student savedStudent;
 
-        student.setLast_name(student.getLast_name().toUpperCase());
-        student.setFirst_name(student.getFirst_name().toUpperCase());
+        student.setLastName(student.getLastName().toUpperCase());
+        student.setFirstName(student.getFirstName().toUpperCase());
 
-        if (student.getNum_student() == null) {
+        if (student.getNumStudent() == null) {
             savedStudent = studentProxy.createStudent(student);
         } else {
             savedStudent = studentProxy.updateStudent(student);
