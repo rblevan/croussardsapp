@@ -13,7 +13,7 @@ L'objectif était de concevoir une architecture logicielle complète séparant l
 
 Je l'ai réalisé avec deux de mes camarades :
  - Stéphane CASTAN (@stephcstn) [https://github.com/stephcstn]
- - Basile DUFRENE 
+ - Basile DUFRENE (@Basile) [https://github.com/Basile-Dufrene]
 
 ---
 
