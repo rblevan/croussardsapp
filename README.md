@@ -57,5 +57,9 @@ Pour lancer le projet localement, vous devez démarrer les deux modules (API pui
 
 ### 1. Démarrer l'API (Backend)
 ```bash
+
+### Note
+
+Un fichier gitlab pour le CI/CD s'y trouve car le projet a été réalisé dans le cadre université sous un serveur GitLab d'enseignement.
 cd croussardsapi
 ./mvnw spring-boot:run
