@@ -8,7 +8,7 @@
 ![Architecture](https://img.shields.io/badge/Architecture-Client%2FServer-purple)
 
 ## 🎓 Contexte du projet
-Ce projet a été réalisé dans le cadre de ma **3ème année de Licence Informatique (L3)** à l'Université de Poitiers.
+Ce projet a été réalisé dans le cadre de ma **3ème année de Licence Informatique (L3)** à l'UFR SFA de l'Université de Poitiers.
 L'objectif était de concevoir une architecture logicielle complète séparant la logique métier (API REST) de l'interface utilisateur, tout en respectant les principes de conception MVC.
 
 Je l'ai réalisé avec deux de mes camarades :
